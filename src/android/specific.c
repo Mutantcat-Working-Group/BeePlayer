@@ -277,10 +277,10 @@ char *platform_GetUserDir (vlc_userdir_t type)
     {
         case VLC_USERDATA_DIR:
             return config_GetHomeDir(".share",
-                "/sdcard/Android/data/org.videolan.vlc");
+                "/sdcard/Android/data/org.mutantcat.beeplayer");
         case VLC_CACHE_DIR:
             return config_GetHomeDir(".cache",
-                "/sdcard/Android/data/org.videolan.vlc/cache");
+                "/sdcard/Android/data/org.mutantcat.beeplayer/cache");
         case VLC_HOME_DIR:
             return config_GetHomeDir(NULL, NULL);
         case VLC_CONFIG_DIR:

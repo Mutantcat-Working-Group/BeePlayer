@@ -491,7 +491,7 @@ STDMETHODIMP CapturePin::QueryId( LPWSTR * Id )
     msg_Dbg( p_input, "CapturePin::QueryId" );
 #endif
 
-    *Id = (LPWSTR)L"VLC Capture Pin";
+    *Id = (LPWSTR)L"BeePlayer Capture Pin";
 
     return S_OK;
 }

@@ -1,5 +1,5 @@
 --[==========================================================================[
- host.lua: VLC Lua interface command line host module
+ host.lua: BeePlayer Lua interface command line host module
 --[==========================================================================[
  Copyright (C) 2007-2012 the VideoLAN team
 
@@ -58,7 +58,7 @@ Example use:
         end
     end
 
-For complete examples see existing VLC Lua interface modules (ie cli.lua)
+For complete examples see existing BeePlayer Lua interface modules (ie cli.lua)
 --]==========================================================================]
 
 status = { init = 0, read = 1, write = 2, password = 3 }
@@ -197,7 +197,7 @@ function host()
                          switch_status = switch_status,
                          append = append,
                        }
-        client:send( "VLC media player "..vlc.misc.version().."\n" )
+        client:send( "BeePlayer "..vlc.misc.version().."\n" )
         clients[client] = client
         client:switch_status(status.password)
     end

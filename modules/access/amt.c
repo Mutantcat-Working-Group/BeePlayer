@@ -1,6 +1,6 @@
 /**
  * @file amt.c
- * @brief Automatic Multicast Tunneling Protocol (AMT) file for VLC media player
+ * @brief Automatic Multicast Tunneling Protocol (AMT) file for BeePlayer
  * Allows multicast streaming when not in a multicast-enabled network
  *
  * Copyright (C) 2018 VLC authors and VideoLAN

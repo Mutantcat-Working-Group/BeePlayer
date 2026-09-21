@@ -46,9 +46,9 @@ typedef struct libvlc_renderer_item_t libvlc_renderer_item_t;
 typedef enum libvlc_state_t libvlc_state_t;
 typedef struct libvlc_picture_list_t libvlc_picture_list_t;
 
-/** \defgroup libvlc_media_player LibVLC media player
+/** \defgroup libvlc_media_player LibBeePlayer
  * \ingroup libvlc
- * A LibVLC media player plays one media (usually in a custom drawable).
+ * A LibBeePlayer plays one media (usually in a custom drawable).
  * @{
  * \file
  * LibVLC simple media player external API
@@ -949,7 +949,7 @@ typedef void (*libvlc_video_cleanup_cb)(void *opaque);
  * \warning Rendering video into custom memory buffers is considerably less
  * efficient than rendering in a custom window as normal.
  *
- * For optimal performances, VLC media player renders into a custom window, and
+ * For optimal performances, BeePlayer renders into a custom window, and
  * does not use this function and associated callbacks. It is <b>highly
  * recommended</b> that other LibVLC-based application do likewise.
  * To embed video in a window, use libvlc_media_player_set_xwindow() or
@@ -1598,7 +1598,7 @@ LIBVLC_API void libvlc_media_player_set_android_context( libvlc_media_player_t *
 /**
  * Callback prototype for audio playback.
  *
- * The LibVLC media player decodes and post-processes the audio signal
+ * The LibBeePlayer decodes and post-processes the audio signal
  * asynchronously (in an internal thread). Whenever audio samples are ready
  * to be queued to the output, this callback is invoked.
  *
@@ -3589,7 +3589,7 @@ LIBVLC_API void libvlc_media_player_record(libvlc_media_player_t *p_mi,
 
 /** @} audio */
 
-/** \defgroup libvlc_media_player_watch_time LibVLC media player time watch API
+/** \defgroup libvlc_media_player_watch_time LibBeePlayer time watch API
  * @{
  */
 
@@ -3774,7 +3774,7 @@ libvlc_media_player_time_point_get_next_date(const libvlc_media_player_time_poin
 
 /** @} libvlc_media_player_watch_time */
 
-/** \defgroup libvlc_media_player_concurrency LibVLC media player concurrency API
+/** \defgroup libvlc_media_player_concurrency LibBeePlayer concurrency API
  * @{
  */
 

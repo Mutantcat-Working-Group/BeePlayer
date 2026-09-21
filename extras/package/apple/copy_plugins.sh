@@ -20,7 +20,7 @@ function generate_info_plist()
     echo '<dict>'
     plist_key CFBundleDevelopmentRegion "en"
     plist_key CFBundleExecutable "${EXECUTABLE_NAME}"
-    plist_key CFBundleIdentifier "org.videolan.vlc.plugins.${BUNDLE_ID_NAME}.framework"
+    plist_key CFBundleIdentifier "org.mutantcat.beeplayer.plugins.${BUNDLE_ID_NAME}.framework"
     plist_key CFBundleInfoDictionaryVersion "6.0"
     plist_key CFBundlePackageType "FMWK"
     plist_key CFBundleSignature "???"

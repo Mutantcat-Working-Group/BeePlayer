@@ -1,6 +1,6 @@
 /**
  * @file sid.cpp
- * @brief Sidplay demux module for VLC media player
+ * @brief Sidplay demux module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2010 Rémi Denis-Courmont

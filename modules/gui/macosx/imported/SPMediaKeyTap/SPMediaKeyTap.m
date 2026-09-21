@@ -175,8 +175,8 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
     dispatch_once(&onceToken, ^{
         NSString *ourIdentifier = [[NSBundle mainBundle] bundleIdentifier];
         if (ourIdentifier == nil) {
-            NSLog(@"SPMediaKeyTap: Bundle identifier unexpectedly nil, falling back to org.videolan.vlc");
-            ourIdentifier = @"org.videolan.vlc";
+            NSLog(@"SPMediaKeyTap: Bundle identifier unexpectedly nil, falling back to org.mutantcat.beeplayer");
+            ourIdentifier = @"org.mutantcat.beeplayer";
         }
         bundleIdentifiers = @[
             ourIdentifier, // your app
@@ -187,7 +187,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
             @"com.apple.quicktimeplayer",
             @"com.apple.iWork.Keynote",
             @"com.apple.iPhoto",
-            @"org.videolan.vlc",
+            @"org.mutantcat.beeplayer",
             @"com.apple.Aperture",
             @"com.plexsquared.Plex",
             @"com.soundcloud.desktop",

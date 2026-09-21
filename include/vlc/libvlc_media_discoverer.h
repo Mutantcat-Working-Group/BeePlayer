@@ -59,7 +59,7 @@ typedef struct libvlc_media_discoverer_description_t {
 /** \defgroup libvlc_media_discoverer LibVLC media discovery
  * \ingroup libvlc
  * LibVLC media discovery finds available media via various means.
- * This corresponds to the service discovery functionality in VLC media player.
+ * This corresponds to the service discovery functionality in BeePlayer.
  * Different plugins find potential medias locally (e.g. user media directory),
  * from peripherals (e.g. video capture device), on the local network
  * (e.g. SAP) or on the Internet (e.g. Internet radios).

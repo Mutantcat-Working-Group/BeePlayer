@@ -309,7 +309,7 @@ static cma_buf_t * cma_pool_alloc_cb(cma_buf_pool_t * const v, size_t size)
 
     // 0x80 is magic value to force full ARM-side mapping - otherwise
     // cache requests can cause kernel crashes
-    if ((cb->vcsm_h = vcsm_malloc_cache(size, VCSM_CACHE_TYPE_HOST | 0x80, "VLC frame")) == 0)
+    if ((cb->vcsm_h = vcsm_malloc_cache(size, VCSM_CACHE_TYPE_HOST | 0x80, "BeePlayer frame")) == 0)
     {
         goto fail;
     }
@@ -441,4 +441,3 @@ cma_buf_t * cma_buf_pool_alloc_buf(cma_buf_pool_t * const cbp, const size_t size
     // ref count of 0 so ref here
     return cma_buf_ref(cb);
 }
-

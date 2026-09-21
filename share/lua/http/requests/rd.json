@@ -1,7 +1,7 @@
 <?vlc --[[
 vim:syntax=lua
 <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - >
-<  rd.json: VLC media player web interface
+<  rd.json: BeePlayer web interface
 < - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - >
 <  Copyright (C) 2020 the VideoLAN team
 <

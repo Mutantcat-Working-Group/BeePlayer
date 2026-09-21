@@ -208,7 +208,7 @@ static char *getAppDependentDir(vlc_userdir_t type)
     }
 
     // Default fallback
-    NSString *identifier = @"org.videolan.vlc";
+    NSString *identifier = @"org.mutantcat.beeplayer";
     NSBundle *mainBundle = [NSBundle mainBundle];
     if (mainBundle) {
         NSString *bundleId = mainBundle.bundleIdentifier;

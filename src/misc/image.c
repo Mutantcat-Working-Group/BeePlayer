@@ -692,7 +692,7 @@ static decoder_t *CreateDecoder( image_handler_t *p_image, const es_format_t *fm
     if( !p_dec->p_module )
     {
         msg_Err( p_dec, "no suitable decoder module for fourcc `%4.4s'. "
-                 "VLC probably does not support this image format.",
+                 "BeePlayer probably does not support this image format.",
                  (char*)&p_dec->fmt_in->i_codec );
 
         decoder_Clean( p_dec );
@@ -749,7 +749,7 @@ static encoder_t *CreateEncoder( vlc_object_t *p_this, const video_format_t *fmt
     if( !p_enc->p_module )
     {
         msg_Err( p_enc, "no suitable encoder module for fourcc `%4.4s'.\n"
-                 "VLC probably does not support this image format.",
+                 "BeePlayer probably does not support this image format.",
                  (char*)&p_enc->fmt_out.i_codec );
 
         vlc_encoder_Destroy( p_enc );

@@ -100,9 +100,9 @@ int Export_HTML( vlc_object_t *p_this )
 "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\">\n"
 "<head>\n"
 "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n"
-"  <meta name=\"Generator\" content=\"VLC media player\" />\n"
+"  <meta name=\"Generator\" content=\"BeePlayer\" />\n"
 "  <meta name=\"Author\" content=\"VLC, http://www.videolan.org/vlc/\" />\n"
-"  <title>VLC generated playlist</title>\n"
+"  <title>BeePlayer generated playlist</title>\n"
 "  <style type=\"text/css\">\n"
 "    body {\n"
 "      background-color: #E4F3FF;\n"
@@ -133,4 +133,3 @@ int Export_HTML( vlc_object_t *p_this )
 "</html>" );
     return VLC_SUCCESS;
 }
-

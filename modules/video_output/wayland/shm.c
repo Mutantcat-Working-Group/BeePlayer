@@ -1,6 +1,6 @@
 /**
  * @file shm.c
- * @brief Wayland shared memory video output module for VLC media player
+ * @brief Wayland shared memory video output module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2014, 2017 Rémi Denis-Courmont

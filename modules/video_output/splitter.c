@@ -1,6 +1,6 @@
 /**
  * @file splitter.c
- * @brief Video splitter video output module for VLC media player
+ * @brief Video splitter video output module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2009 Laurent Aimar

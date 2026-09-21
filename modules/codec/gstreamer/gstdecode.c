@@ -174,7 +174,7 @@ void gst_vlc_dec_ensure_empty_queue( decoder_t *p_dec )
 /* Emitted by appsrc when serving a seek request.
  * Seek over here is only used for flushing the buffers.
  * Returns TRUE always, as the 'real' seek will be
- * done by VLC framework */
+ * done by BeePlayer framework */
 static gboolean seek_data_cb( GstAppSrc *p_src, guint64 l_offset,
         gpointer p_data )
 {
@@ -367,7 +367,7 @@ static void vlc_gst_init_once(void *data)
 
     gst_init( NULL, NULL );
     *registered = gst_plugin_register_static( 1, 0, "videolan",
-                "VLC Gstreamer plugins", vlc_gst_plugin_init,
+                "BeePlayer Gstreamer plugins", vlc_gst_plugin_init,
                 "1.0.0", "LGPL", "NA", "vlc", "NA" );
 }
 

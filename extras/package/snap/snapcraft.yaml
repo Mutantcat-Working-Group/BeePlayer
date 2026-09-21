@@ -5,10 +5,10 @@ grade: stable
 base: core24
 summary: Read, capture, broadcast your multimedia streams
 description: |
-  VLC is a free and open source cross-platform multimedia player and
+  BeePlayer is a free and open source cross-platform multimedia player and
   framework that plays most multimedia files as well as DVDs, Audio CDs,
   VCDs, and various streaming protocols.
-  NOTE. This snap contains an untested daily build of VLC
+  NOTE. This snap contains an untested daily build of BeePlayer
 confinement: strict
 compression: lzo
 plugs:
@@ -28,7 +28,7 @@ apps:
     command: usr/bin/vlc-snap-wrapper.sh
     extensions:
       - kde-neon-6
-    common-id: org.videolan.vlc
+    common-id: org.mutantcat.beeplayer
     plugs:
       - audio-playback
       - audio-record

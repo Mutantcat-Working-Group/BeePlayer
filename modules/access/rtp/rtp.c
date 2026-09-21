@@ -1,6 +1,6 @@
 /**
  * @file rtp.c
- * @brief Real-Time Protocol (RTP) demux module for VLC media player
+ * @brief Real-Time Protocol (RTP) demux module for BeePlayer
  */
 /*****************************************************************************
  * Copyright (C) 2001-2005 VLC authors and VideoLAN

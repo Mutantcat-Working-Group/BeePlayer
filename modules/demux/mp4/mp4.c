@@ -1121,7 +1121,7 @@ static int Open( vlc_object_t * p_this )
             }
             else if (BOXDATA(p_ftyp)->i_compatible_brands[i] == BRAND_smoo)
             {
-                msg_Dbg( p_demux, "Handling VLC Smooth Stream" );
+                msg_Dbg( p_demux, "Handling BeePlayer Smooth Stream" );
             }
         }
     }
@@ -4984,7 +4984,7 @@ static int ProbeFragmentsChecked( demux_t *p_demux )
         const char *psz_msg = _(
             "Because this file index is broken or missing, "
             "seeking will not work correctly.\n"
-            "VLC won't repair your file but can temporary fix this "
+            "BeePlayer won't repair your file but can temporary fix this "
             "problem by building an index in memory.\n"
             "This step might take a long time on a large file.\n"
             "What do you want to do?");

@@ -201,7 +201,7 @@
 
 - (void)reportEvent:(void(^)())eventBlock
 {
-    CFStringRef mode = CFSTR("org.videolan.vlccore.window");
+    CFStringRef mode = CFSTR("org.mutantcat.beeplayercore.window");
     CFRunLoopRef runloop = CFRunLoopGetCurrent();
 
     /* Callback hell right below, we need to execute the call

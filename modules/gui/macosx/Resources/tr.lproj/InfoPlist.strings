@@ -1,10 +1,10 @@
 /* Localized versions of Info.plist keys */
 
-"NSCameraUsageDescription" = "VLC, kullanıcının isteği üzerine kameraya erişmek istiyor.";
-"NSMicrophoneUsageDescription" = "VLC, kullanıcının isteği üzerine mikrofona erişmek istiyor.";
-"NSAppleEventsUsageDescription" = "VLC, dış ortam oynatıcıları duraklatmak ve oynatma istiyor.";
-"NSDesktopFolderUsageDescription" = "VLC, kullanıcının isteği üzerine masaüstü klasörüne erişmek istiyor.";
-"NSDocumentsFolderUsageDescription" = "VLC, kullanıcının isteği üzerine belgeler klasörüne erişmek istiyor.";
-"NSDownloadsFolderUsageDescription" = "VLC, kullanıcının isteği üzerine indirmeler klasörüne erişmek istiyor.";
-"NSNetworkVolumesUsageDescription" = "VLC, kullanıcının isteği üzerine ağ birimine erişmek istiyor.";
-"NSRemovableVolumesUsageDescription" = "VLC, kullanıcının isteği üzerine çıkarılabilir bir birime erişmek istiyor.";
+"NSCameraUsageDescription" = "BeePlayer, kullanıcının isteği üzerine kameraya erişmek istiyor.";
+"NSMicrophoneUsageDescription" = "BeePlayer, kullanıcının isteği üzerine mikrofona erişmek istiyor.";
+"NSAppleEventsUsageDescription" = "BeePlayer, dış ortam oynatıcıları duraklatmak ve oynatma istiyor.";
+"NSDesktopFolderUsageDescription" = "BeePlayer, kullanıcının isteği üzerine masaüstü klasörüne erişmek istiyor.";
+"NSDocumentsFolderUsageDescription" = "BeePlayer, kullanıcının isteği üzerine belgeler klasörüne erişmek istiyor.";
+"NSDownloadsFolderUsageDescription" = "BeePlayer, kullanıcının isteği üzerine indirmeler klasörüne erişmek istiyor.";
+"NSNetworkVolumesUsageDescription" = "BeePlayer, kullanıcının isteği üzerine ağ birimine erişmek istiyor.";
+"NSRemovableVolumesUsageDescription" = "BeePlayer, kullanıcının isteği üzerine çıkarılabilir bir birime erişmek istiyor.";

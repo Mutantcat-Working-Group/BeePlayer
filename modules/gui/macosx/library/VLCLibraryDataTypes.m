@@ -32,7 +32,7 @@
 #import <vlc_url.h>
 
 NSString * const VLCMediaLibraryMediaItemPasteboardType = @"VLCMediaLibraryMediaItemPasteboardType";
-NSString * const VLCMediaLibraryMediaItemUTI = @"org.videolan.vlc.VLCMediaLibraryMediaItem";
+NSString * const VLCMediaLibraryMediaItemUTI = @"org.mutantcat.beeplayer.VLCMediaLibraryMediaItem";
 
 const CGFloat VLCMediaLibrary8KWidth = 7680.;
 const CGFloat VLCMediaLibrary8KHeight = 4320.;

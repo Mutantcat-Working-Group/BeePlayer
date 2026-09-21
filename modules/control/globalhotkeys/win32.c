@@ -132,7 +132,7 @@ static void *Thread( void *p_data )
     /* Window which receives Hotkeys */
     p_sys->hotkeyWindow =
         (void*)CreateWindow( TEXT("STATIC"),         /* name of window class */
-                TEXT("VLC ghk ") TEXT(VERSION),     /* window title bar text */
+                TEXT("BeePlayer ghk ") TEXT(VERSION), /* window title bar text */
                 0,                                           /* window style */
                 0,                                   /* default X coordinate */
                 0,                                   /* default Y coordinate */

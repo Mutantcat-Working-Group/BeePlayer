@@ -147,7 +147,7 @@ vlc_playlist_t * vlclua_get_playlist_internal( lua_State * );
 /*****************************************************************************
  * Lua function bridge
  *****************************************************************************/
-#define vlclua_error( L ) luaL_error( L, "VLC lua error in file %s line %d (function %s)", __FILE__, __LINE__, __func__ )
+#define vlclua_error( L ) luaL_error( L, "BeePlayer lua error in file %s line %d (function %s)", __FILE__, __LINE__, __func__ )
 int vlclua_push_ret( lua_State *, int i_error );
 
 /*****************************************************************************
@@ -207,4 +207,3 @@ void vlclua_fd_cleanup( vlclua_dtable_t * );
 struct vlc_interrupt *vlclua_set_interrupt( lua_State *L );
 
 #endif /* VLC_LUA_H */
-

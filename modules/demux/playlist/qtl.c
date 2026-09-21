@@ -205,26 +205,26 @@ static int ReadDir( stream_t *p_demux, input_item_node_t *p_subitems )
                      attrname, value );
     }
 
-    msg_Dbg( p_demux, "autoplay: %s (unused by VLC)",
+    msg_Dbg( p_demux, "autoplay: %s (unused by BeePlayer)",
              b_autoplay ? "true": "false" );
-    msg_Dbg( p_demux, "controller: %s (unused by VLC)",
+    msg_Dbg( p_demux, "controller: %s (unused by BeePlayer)",
              b_controller ? "true": "false" );
-    msg_Dbg( p_demux, "fullscreen: %s (unused by VLC)",
+    msg_Dbg( p_demux, "fullscreen: %s (unused by BeePlayer)",
              ppsz_fullscreen[fullscreen] );
     msg_Dbg( p_demux, "href: %s", psz_href );
-    msg_Dbg( p_demux, "kioskmode: %s (unused by VLC)",
+    msg_Dbg( p_demux, "kioskmode: %s (unused by BeePlayer)",
              b_kioskmode ? "true":"false" );
-    msg_Dbg( p_demux, "loop: %s (unused by VLC)", ppsz_loop[loop] );
-    msg_Dbg( p_demux, "movieid: %d (unused by VLC)", i_movieid );
+    msg_Dbg( p_demux, "loop: %s (unused by BeePlayer)", ppsz_loop[loop] );
+    msg_Dbg( p_demux, "movieid: %d (unused by BeePlayer)", i_movieid );
     msg_Dbg( p_demux, "moviename: %s", psz_moviename );
-    msg_Dbg( p_demux, "playeverframe: %s (unused by VLC)",
+    msg_Dbg( p_demux, "playeverframe: %s (unused by BeePlayer)",
              b_playeveryframe ? "true":"false" );
     msg_Dbg( p_demux, "qtnext: %s", psz_qtnext );
-    msg_Dbg( p_demux, "quitwhendone: %s (unused by VLC)",
+    msg_Dbg( p_demux, "quitwhendone: %s (unused by BeePlayer)",
              b_quitwhendone ? "true":"false" );
     msg_Dbg( p_demux, "src: %s", psz_src );
     msg_Dbg( p_demux, "mimetype: %s", psz_mimetype );
-    msg_Dbg( p_demux, "volume: %d (unused by VLC)", i_volume );
+    msg_Dbg( p_demux, "volume: %d (unused by BeePlayer)", i_volume );
 
 
     if( !psz_src )

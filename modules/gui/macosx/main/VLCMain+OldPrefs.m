@@ -112,8 +112,8 @@ static const int kCurrentPreferencesVersion = 4;
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setAlertStyle:NSAlertStyleInformational];
         [alert setMessageText:_NS("Remove old preferences?")];
-        [alert setInformativeText:_NS("We just found an older version of VLC's preferences files.")];
-        [alert addButtonWithTitle:_NS("Move To Trash and Relaunch VLC")];
+        [alert setInformativeText:_NS("We just found an older version of BeePlayer's preferences files.")];
+        [alert addButtonWithTitle:_NS("Move To Trash and Relaunch BeePlayer")];
         [alert addButtonWithTitle:_NS("Ignore")];
         NSModalResponse res = [alert runModal];
         if (res != NSAlertFirstButtonReturn) {
@@ -123,7 +123,7 @@ static const int kCurrentPreferencesVersion = 4;
 
         // Do NOT add the current plist file here as this would conflict with caching.
         // Instead, just reset below.
-        NSArray *ourPreferences = @[[[NSURL alloc] initFileURLWithPath:[preferences stringByAppendingPathComponent:@"org.videolan.vlc"]],
+        NSArray *ourPreferences = @[[[NSURL alloc] initFileURLWithPath:[preferences stringByAppendingPathComponent:@"org.mutantcat.beeplayer"]],
                                     [[NSURL alloc] initFileURLWithPath:[preferences stringByAppendingPathComponent:@"VLC"]]];
 
         [NSWorkspace.sharedWorkspace recycleURLs:ourPreferences completionHandler:^(NSDictionary * __unused newURLs, NSError * __unused error){

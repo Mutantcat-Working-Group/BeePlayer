@@ -1,5 +1,5 @@
 --[==========================================================================[
- http.lua: HTTP interface module for VLC
+ http.lua: HTTP interface module for BeePlayer
 --[==========================================================================[
  Copyright (C) 2007-2009 the VideoLAN team
 
@@ -36,7 +36,7 @@ vlc.msg.info("Lua HTTP interface")
 open_tag = "<?vlc"
 close_tag = "?>"
 
--- TODO: use internal VLC mime lookup function for mimes not included here
+-- TODO: use internal BeePlayer mime lookup function for mimes not included here
 mimes = {
     txt = "text/plain",
     json = "text/plain",

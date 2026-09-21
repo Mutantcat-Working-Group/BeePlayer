@@ -93,7 +93,7 @@
     [o_copyright_field setStringValue: copyrightText];
 
     /* l10n */
-    [[self window] setTitle: _NS("About VLC media player")];
+    [[self window] setTitle: _NS("About BeePlayer")];
     NSDictionary *stringAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:NSUnderlineStyleSingle], NSUnderlineStyleAttributeName, [NSColor secondaryLabelColor], NSForegroundColorAttributeName, [NSFont systemFontOfSize:13], NSFontAttributeName, nil];
     NSAttributedString *attrStr;
     attrStr = [[NSAttributedString alloc] initWithString:_NS("Credits") attributes:stringAttributes];
@@ -102,7 +102,7 @@
     [o_gpl_btn setAttributedTitle:attrStr];
     attrStr = [[NSAttributedString alloc] initWithString:_NS("Authors") attributes:stringAttributes];
     [o_authors_btn setAttributedTitle:attrStr];
-    [o_trademarks_txt setStringValue:_NS("VLC media player and VideoLAN are trademarks of the VideoLAN Association.")];
+    [o_trademarks_txt setStringValue:_NS("BeePlayer and VideoLAN are trademarks of the VideoLAN Association.")];
 
     /* setup the creator / revision field */
     NSString *compiler;
@@ -128,10 +128,10 @@
 
     /* setup join us! */
     NSString *joinus = toNSStr(_(""
-                                 "<p>VLC media player is a free and open source media player, encoder, and "
+                                 "<p>BeePlayer is a free and open source media player, encoder, and "
                                  "streamer made by the volunteers of the <a href=\"https://www.videolan.org/"
                                  "\"><span style=\" text-decoration: underline; color:#0057ae;\">VideoLAN</"
-                                 "span></a> community.</p><p>VLC uses its internal codecs, works on "
+                                 "span></a> community.</p><p>BeePlayer uses its internal codecs, works on "
                                  "essentially every popular platform, and can read almost all files, CDs, "
                                  "DVDs, network streams, capture cards and other media formats!</p><p><a href="
                                  "\"https://www.videolan.org/contribute/\"><span style=\" text-decoration: "

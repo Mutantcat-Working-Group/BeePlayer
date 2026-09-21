@@ -217,7 +217,7 @@ static int make_xmp_packet( const video_format_t *fmt, png_textp chunk )
     id[8] = '\0';
     int len = asprintf( &chunk->text,
             "<?xpacket begin='﻿' id='%s'?>"
-             "<x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='VLC " VERSION "'>"
+             "<x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='BeePlayer " VERSION "'>"
               "<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>"
                "<rdf:Description rdf:about='' xmlns:tiff='http://ns.adobe.com/tiff/1.0/'>"
                 "<tiff:Orientation>%" PRIu8 "</tiff:Orientation>"

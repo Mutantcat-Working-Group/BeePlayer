@@ -1,5 +1,5 @@
 --[==========================================================================[
- luac.lua: lua compilation module for VLC (duplicates luac)
+ luac.lua: lua compilation module for BeePlayer (duplicates luac)
 --[==========================================================================[
  Copyright (C) 2010 Antoine Cellerier
 
@@ -60,4 +60,3 @@ if not compile() then
     end
 end
 vlc.misc.quit()
-

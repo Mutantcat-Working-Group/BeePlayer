@@ -209,7 +209,7 @@ static int Win32VoutCreateWindow( struct event_thread_t *p_event )
     p_event->hvideownd =
         CreateWindowEx( WS_EX_NOPARENTNOTIFY | WS_EX_NOACTIVATE,
                     p_event->class_video,            /* name of window class */
-                    TEXT(VOUT_TITLE) TEXT(" (VLC Video Output)"),/* window title */
+                    TEXT(VOUT_TITLE) TEXT(" (BeePlayer Video Output)"),/* window title */
                     i_style,                                 /* window style */
                     CW_USEDEFAULT,                   /* default X coordinate */
                     CW_USEDEFAULT,                   /* default Y coordinate */
@@ -347,7 +347,7 @@ struct event_thread_t *EventThreadCreate( vlc_object_t *obj, vlc_window_t *paren
     p_event->parent_window = parent_window;
 
     _snwprintf( p_event->class_video, ARRAY_SIZE(p_event->class_video),
-                TEXT("VLC video output %p"), (void *)p_event );
+                TEXT("BeePlayer video output %p"), (void *)p_event );
 
 #ifdef HAVE_WIN32_SENSORS
     p_event->init_move = owner;

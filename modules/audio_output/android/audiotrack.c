@@ -1817,7 +1817,7 @@ Start( aout_stream_t *stream, audio_sample_format_t *restrict p_fmt,
 
     p_sys->fmt = *p_fmt;
 
-    aout_FormatPrint( stream, "VLC is looking for:", &p_sys->fmt );
+    aout_FormatPrint( stream, "BeePlayer is looking for:", &p_sys->fmt );
 
     if (p_sys->fmt.channel_type == AUDIO_CHANNEL_TYPE_AMBISONICS)
     {
@@ -1911,7 +1911,7 @@ Start( aout_stream_t *stream, audio_sample_format_t *restrict p_fmt,
 
     *p_fmt = p_sys->fmt;
 
-    aout_FormatPrint( stream, "VLC will output:", &p_sys->fmt );
+    aout_FormatPrint( stream, "BeePlayer will output:", &p_sys->fmt );
 
     stream->stop = Stop;
     stream->play = Play;

@@ -38,7 +38,7 @@ function parse_json(url)
     local line   = ""
 
     if not stream then
-        return nil, nil, "Failed creating VLC stream"
+        return nil, nil, "Failed creating BeePlayer stream"
     end
 
     while true do

@@ -64,7 +64,7 @@ typedef NS_ENUM(NSInteger, VLCLibraryDataSourceCacheAction) {
 
 - (void)setup
 {
-    _playlistQueue = dispatch_queue_create("org.videolan.vlc.libraryplaylistdatasource.queue", DISPATCH_QUEUE_CONCURRENT);
+    _playlistQueue = dispatch_queue_create("org.mutantcat.beeplayer.libraryplaylistdatasource.queue", DISPATCH_QUEUE_CONCURRENT);
     _libraryModel = VLCMain.sharedInstance.libraryController.libraryModel;
     [self connect];
     [self reloadData];

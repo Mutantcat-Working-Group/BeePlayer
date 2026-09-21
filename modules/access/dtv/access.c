@@ -1,6 +1,6 @@
 /**
  * @file access.c
- * @brief Digital broadcasting input module for VLC media player
+ * @brief Digital broadcasting input module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2011 Rémi Denis-Courmont

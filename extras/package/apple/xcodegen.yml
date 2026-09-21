@@ -1,6 +1,6 @@
-name: VLC
+name: BeePlayer
 options:
-  bundleIdPrefix: org.videolan.vlc
+  bundleIdPrefix: org.mutantcat.beeplayer
   supportedDestinations: [iOS, tvOS, visionOS, watchOS]
   deploymentTarget:
     iOS: 9.0
@@ -45,12 +45,12 @@ targets:
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: org.videolan.vlc.vlccoreios
+      PRODUCT_BUNDLE_IDENTIFIER: org.mutantcat.beeplayer.vlccoreios
     postBuildScripts:
       - script: ${VLC_SRC_DIR}/extras/package/apple/copy_plugins.sh
-        name: "Copy VLC plugins"
+        name: "Copy BeePlayer plugins"
 
-      - name: Install VLC share data
+      - name: Install BeePlayer share data
         shell: /bin/bash
         script: |
             set -e
@@ -88,14 +88,14 @@ targets:
     info:
       path: "vlccorewatchos/Info.plist"
       properties:
-        CFBundleIdentifier: org.videolan.vlc.vlccore.watchapp
-        WKCompanionAppBundleIdentifier: org.videolan.vlc.vlccore
+        CFBundleIdentifier: org.mutantcat.beeplayer.vlccore.watchapp
+        WKCompanionAppBundleIdentifier: org.mutantcat.beeplayer.vlccore
         WKRunsIndependentlyOfCompanionApp: true
         WKApplication: true
         UIBackgroundModes:
           - audio
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: org.videolan.vlc.vlccoreios.watchapp
+      PRODUCT_BUNDLE_IDENTIFIER: org.mutantcat.beeplayer.vlccoreios.watchapp
     postBuildScripts:
       - script: ${VLC_SRC_DIR}/extras/package/apple/copy_plugins.sh
         name: "Copy VLC plugins"
@@ -172,4 +172,3 @@ targets:
             # We have to generate dSYM bundle here because Xcode might
             # already have generated them before script execution
             dsymutil -o "${FRAMEWORK_DIR}.dSYM" "${FRAMEWORK_BIN_PATH}"
-

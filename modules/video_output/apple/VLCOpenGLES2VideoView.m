@@ -89,7 +89,7 @@ static void vlc_dispatch_sync(void (^block_function)())
 
     CFStringRef modes_cfstrings[] = {
         kCFRunLoopCommonModes,
-        CFSTR("org.videolan.vlccore.window"),
+        CFSTR("org.mutantcat.beeplayercore.window"),
     };
 
     CFArrayRef modes = CFArrayCreate(NULL, (const void **)modes_cfstrings,

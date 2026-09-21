@@ -1,6 +1,6 @@
 /**
  * @file shm.c
- * @brief Shared memory frame buffer capture module for VLC media player
+ * @brief Shared memory frame buffer capture module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2011 Rémi Denis-Courmont

@@ -29,7 +29,7 @@
 #import "library/VLCInputItem.h"
 #import "library/VLCLibraryDataTypes.h"
 
-NSString *VLCPlaylistItemPasteboardType = @"org.videolan.vlc.playlistitemtype";
+NSString *VLCPlaylistItemPasteboardType = @"org.mutantcat.beeplayer.playlistitemtype";
 
 @implementation VLCPlayQueueItem
 

@@ -1,6 +1,6 @@
 /**
  * @file xcb_apps.c
- * @brief List of application windows XCB module for VLC media player
+ * @brief List of application windows XCB module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2009 Rémi Denis-Courmont

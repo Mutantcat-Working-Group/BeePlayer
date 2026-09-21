@@ -1,6 +1,6 @@
 /**
  * @file xcb.c
- * @brief X11 C Bindings screen capture demux module for VLC media player
+ * @brief X11 C Bindings screen capture demux module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2009 Rémi Denis-Courmont

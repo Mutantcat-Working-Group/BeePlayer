@@ -215,7 +215,7 @@ function main()
                 options=options} )
             end
 
-            -- add iphone (m3u8) streams, VLC doesn't like them much yet
+            -- add iphone (m3u8) streams, BeePlayer doesn't like them much yet
             if do_iphone then
                 local options={"deinterlace=1"}
                 local path = iphone_base .. hls_names[idx] .. '/stream1.m3u8'

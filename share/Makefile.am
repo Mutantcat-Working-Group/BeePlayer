@@ -58,7 +58,7 @@ desktopdir = $(datadir)/applications
 if KDE_SOLID
 desktop_DATA = vlc.desktop vlc-openbd.desktop vlc-opendvd.desktop vlc-openvcd.desktop vlc-opencda.desktop
 appdatadir = $(datarootdir)/metainfo
-appdata_DATA = org.videolan.vlc.appdata.xml
+appdata_DATA = org.mutantcat.beeplayer.appdata.xml
 endif
 
 EXTRA_DIST += vlc.desktop.in vlc.desktop.mimetypes
@@ -73,7 +73,7 @@ CLEANFILES += $(desktop_DATA) $(appdata_DATA)
 	$(AM_V_at)$(DESKTOP_FILE_VALIDATE) tmp-$@
 	$(AM_V_at)mv -f tmp-$@ $@
 
-org.videolan.vlc.appdata.xml: org.videolan.vlc.appdata.xml.in
+org.mutantcat.beeplayer.appdata.xml: org.mutantcat.beeplayer.appdata.xml.in
 	$(AM_V_GEN)$(MSGFMT) --xml --template "$<" -d "$(top_srcdir)/po" \
 			-o "$@.tmp" || \
 		cp $< $@.tmp

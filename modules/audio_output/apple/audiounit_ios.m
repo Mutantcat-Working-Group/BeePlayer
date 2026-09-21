@@ -273,7 +273,7 @@ Start(audio_output_t *p_aout, audio_sample_format_t *restrict fmt)
     if (AOUT_FMT_SPDIF(fmt))
         return VLC_EGENERIC;
 
-    aout_FormatPrint(p_aout, "VLC is looking for:", fmt);
+    aout_FormatPrint(p_aout, "BeePlayer is looking for:", fmt);
 
     p_sys->au_unit = NULL;
     p_sys->output_latency_ticks = 0;

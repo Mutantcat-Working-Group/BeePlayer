@@ -1,6 +1,6 @@
 /**
  * @file idle-inhibit.c
- * @brief Wayland idle inhibitor module for VLC media player
+ * @brief Wayland idle inhibitor module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2018 Rémi Denis-Courmont

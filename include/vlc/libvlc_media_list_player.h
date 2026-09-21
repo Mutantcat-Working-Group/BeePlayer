@@ -40,7 +40,7 @@ typedef struct libvlc_media_t libvlc_media_t;
  * The LibVLC media list player plays a @ref libvlc_media_list_t list of media,
  * in a certain order.
  * This is required to especially support playlist files.
- * The normal @ref libvlc_media_player_t LibVLC media player can only play a
+ * The normal @ref libvlc_media_player_t LibBeePlayer can only play a
  * single media, and does not handle playlist files properly.
  * @{
  * \file

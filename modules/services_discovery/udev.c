@@ -1,6 +1,6 @@
 /**
  * @file udev.c
- * @brief List of multimedia devices for VLC media player
+ * @brief List of multimedia devices for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2009 Rémi Denis-Courmont

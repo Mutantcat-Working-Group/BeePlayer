@@ -672,7 +672,7 @@ MapOutputLayout(audio_output_t *p_aout, audio_sample_format_t *fmt,
     free(reslayout);
     aout_FormatPrepare(fmt);
 
-    msg_Dbg(p_aout, "VLC will output: %s", aout_FormatPrintChannels(fmt));
+    msg_Dbg(p_aout, "BeePlayer will output: %s", aout_FormatPrintChannels(fmt));
 
     return VLC_SUCCESS;
 }

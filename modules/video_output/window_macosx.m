@@ -169,7 +169,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     self = [super init];
     if (self) {
-        eventQueue = dispatch_queue_create("org.videolan.vlc.vout", DISPATCH_QUEUE_SERIAL);
+        eventQueue = dispatch_queue_create("org.mutantcat.beeplayer.vout", DISPATCH_QUEUE_SERIAL);
         _requested_width = 0;
         _requested_height = 0;
         _width = 0;
@@ -292,7 +292,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithWindow:window];
     if (self) {
         // Set the initial vout title
-        [window setTitle:[NSString stringWithUTF8String:VOUT_TITLE " (VLC Video Output)"]];
+        [window setTitle:[NSString stringWithUTF8String:VOUT_TITLE " (BeePlayer Video Output)"]];
 
         // The content always changes during live resize
         [window setPreservesContentDuringLiveResize:NO];

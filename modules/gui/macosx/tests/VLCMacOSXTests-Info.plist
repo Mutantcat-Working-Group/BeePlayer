@@ -7,7 +7,7 @@
     <key>CFBundleExecutable</key>
     <string>VLCMacOSXTests</string>
     <key>CFBundleIdentifier</key>
-    <string>org.videolan.VLCMacOSXTests</string>
+    <string>org.mutantcat.beeplayer.tests</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>

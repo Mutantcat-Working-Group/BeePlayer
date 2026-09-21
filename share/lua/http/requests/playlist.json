@@ -1,7 +1,7 @@
 <?vlc --[[
 vim:syntax=lua
 <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - >
-<  playlist.json: VLC media player web interface
+<  playlist.json: BeePlayer web interface
 <  this should mirror the content of playlist.xml
 < - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - >
 <  Copyright (C) 2005-2006 the VideoLAN team

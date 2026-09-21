@@ -1,5 +1,5 @@
 /*****************************************************************************
- * override.c: overridden function calls for VLC media player
+ * override.c: overridden function calls for BeePlayer
  *****************************************************************************
  * Copyright (C) 2010 Rémi Denis-Courmont
  *

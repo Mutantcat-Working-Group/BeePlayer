@@ -1,11 +1,11 @@
 <?xml version='1.0'?>
 <Include>
-    <?define ShortProductName = "VLC" ?>
-    <?define ProductName = "VLC media player" ?>
-    <?define Manufacturer = "VideoLAN" ?>
-    <?define AboutURL = "https://www.videolan.org/vlc/" ?>
-    <?define SupportURL = "https://www.videolan.org/support/" ?>
-    <?define UpdatesURL = "https://www.videolan.org/vlc/" ?>
+    <?define ShortProductName = "BeePlayer" ?>
+    <?define ProductName = "BeePlayer" ?>
+    <?define Manufacturer = "Mutantcat" ?>
+    <?define AboutURL = "https://github.com/Mutantcat-Working-Group/BeePlayer" ?>
+    <?define SupportURL = "https://github.com/Mutantcat-Working-Group/BeePlayer/issues" ?>
+    <?define UpdatesURL = "https://github.com/Mutantcat-Working-Group/BeePlayer/releases" ?>
 
     <?define VerMajor = "@VERSION_MAJOR@" ?>
     <?define VerMinor = "@VERSION_MINOR@" ?>
@@ -39,7 +39,7 @@
         <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
     <?endif ?>
 
-    <?define AppFolder = "VLC" ?>
+    <?define AppFolder = "BeePlayer" ?>
 
 
     <?define BaseGuid = "d2e0205b-0d3a-46e2-adf7-0504ff48cf" ?>

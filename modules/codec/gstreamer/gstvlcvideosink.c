@@ -88,7 +88,7 @@ static void gst_vlc_video_sink_class_init( GstVlcVideoSinkClass *p_klass )
     p_gobject_class->finalize = gst_vlc_video_sink_finalize;
 
     g_object_class_install_property( G_OBJECT_CLASS( p_klass ), PROP_USE_POOL,
-            g_param_spec_boolean( "use-pool", "Use-Pool", "Use downstream VLC video output pool",
+            g_param_spec_boolean( "use-pool", "Use-Pool", "Use downstream BeePlayer video output pool",
                 FALSE, G_PARAM_READWRITE | GST_PARAM_MUTABLE_READY |
                 G_PARAM_STATIC_STRINGS ));
 
@@ -122,8 +122,8 @@ static void gst_vlc_video_sink_class_init( GstVlcVideoSinkClass *p_klass )
             gst_static_pad_template_get( &sink_template ));
 
     gst_element_class_set_static_metadata( p_gstelement_class,
-            "VLC Video Sink", "Sink/Video",
-            "Video Sink for VLC video decoders",
+            "BeePlayer Video Sink", "Sink/Video",
+            "Video Sink for BeePlayer video decoders",
             "Vikram Fugro <vikram.fugro@gmail.com>" );
 
     p_gstbasesink_class->set_caps = gst_vlc_video_sink_setcaps;

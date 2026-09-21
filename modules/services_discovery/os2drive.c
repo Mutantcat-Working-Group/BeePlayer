@@ -1,6 +1,6 @@
 /**
  * @file os2drive.c
- * @brief List of disc drives for VLC media player for OS/2
+ * @brief List of disc drives for BeePlayer for OS/2
  */
 /*****************************************************************************
  * Copyright (C) 2012 KO Myung-Hun <komh@chollian.net>

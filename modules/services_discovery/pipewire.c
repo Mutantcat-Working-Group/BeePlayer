@@ -1,6 +1,6 @@
 /*****************************************************************************
  * @file pipewire.c
- * @brief List of PipeWire sources for VLC media player
+ * @brief List of PipeWire sources for BeePlayer
  *****************************************************************************
  * Copyright (C) 2024 VLC authors and VideoLAN
  *

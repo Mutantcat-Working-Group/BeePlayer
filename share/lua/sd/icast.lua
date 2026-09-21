@@ -48,7 +48,7 @@ function json_init()
     end
 end
 
--- VLC SD mandatory method, return the name and capabilities of this SD.
+-- BeePlayer SD mandatory method, return the name and capabilities of this SD.
 function descriptor()
     return { title = "iCast Stream Directory", capabilities = {"search"} }
 end
@@ -115,7 +115,7 @@ function stations_fetch(node, url)
     end
 end
 
--- VLC SD API - Search entry point
+-- BeePlayer SD API - Search entry point
 function search(query)
     if roots.search then vlc.sd.remove_node(roots.search) end
 
@@ -124,7 +124,7 @@ function search(query)
     stations_fetch(roots.search, "/stations/search.json?q="..query.."*")
 end
 
--- VLC SD API - Main listing entry point
+-- BeePlayer SD API - Main listing entry point
 function main()
     roots_init()
 

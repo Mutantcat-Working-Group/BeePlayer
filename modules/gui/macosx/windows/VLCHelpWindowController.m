@@ -44,7 +44,7 @@
 
 - (void)windowDidLoad
 {
-    self.window.title = _NS("VLC media player Help");
+    self.window.title = _NS("BeePlayer Help");
     self.window.tabbingMode = NSWindowTabbingModeDisallowed;
 
     _helpWebView = [[WKWebView alloc] initWithFrame:self.window.contentView.bounds];

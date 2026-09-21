@@ -6,7 +6,7 @@
 # Authors: http://forum.videolan.org/viewtopic.php?f=13&t=40560
 #          Rafaël Carré <funman@videolanorg>
 #
-# Sets VLC media player the default application for audio mime types
+# Sets BeePlayer the default application for audio mime types
 # on a freedesktop compliant desktop
 #
 

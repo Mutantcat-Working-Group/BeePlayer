@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
-Name=VLC media player (DVD)
-Name[fr]=Lecteur multimédia VLC (DVD)
+Name=BeePlayer (DVD)
+Name[fr]=Lecteur multimédia BeePlayer (DVD)
 NoDisplay=true
 Exec=@bindir@/vlc --started-from-file dvd://%f
 Icon=vlc

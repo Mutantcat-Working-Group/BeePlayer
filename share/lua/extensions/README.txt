@@ -1,10 +1,10 @@
-Instructions to code your own VLC Lua extension script.
+Instructions to code your own BeePlayer Lua extension script.
 
-See lua/README.txt for generic documentation about Lua usage in VLC.
+See lua/README.txt for generic documentation about Lua usage in BeePlayer.
 
 Examples: imdb.lua, lastfm.lua, subtitles.lua
 
 TODO :-)
 
-VLC defines a global vlc object with the following members:
-All the VLC specific Lua modules are available, even Extension and Dialog.
+BeePlayer defines a global vlc object with the following members:
+All the BeePlayer specific Lua modules are available, even Extension and Dialog.

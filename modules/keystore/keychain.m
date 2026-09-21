@@ -93,7 +93,7 @@ static NSMutableDictionary * CreateQuery(vlc_keystore *p_keystore)
      * need to handle a password migration. Using this attribute on iOS cause a
      * errSecNoSuchAttr error. */
 #if !TARGET_OS_IPHONE
-    [dictionary setObject:@"VLC-Password-Service" forKey:(__bridge id)kSecAttrService];
+    [dictionary setObject:@"BeePlayer-Password-Service" forKey:(__bridge id)kSecAttrService];
 #endif
 
     char * psz_access_group = var_InheritString(p_keystore, "keychain-access-group");

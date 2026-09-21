@@ -1001,13 +1001,13 @@ WarnConfiguration(audio_output_t *p_aout)
     if (!dev_is_warned)
     {
         msg_Warn(p_aout, "You should configure your speaker layout with "
-                "Audio Midi Setup in /Applications/Utilities. VLC will "
+                "Audio Midi Setup in /Applications/Utilities. BeePlayer will "
                 "output Stereo only.");
         vlc_dialog_display_error(p_aout,
             _("Audio device is not configured"), "%s",
             _("You should configure your speaker layout with "
             "\"Audio Midi Setup\" in /Applications/"
-            "Utilities. VLC will output Stereo only."));
+            "Utilities. BeePlayer will output Stereo only."));
 
         /* Don't save too many devices */
         if (dev_count >= 10)
@@ -1561,7 +1561,7 @@ Start(audio_output_t *p_aout, audio_sample_format_t *restrict fmt)
 
     p_sys->i_selected_dev = p_sys->i_new_selected_dev & ~AOUT_VAR_SPDIF_FLAG;
 
-    aout_FormatPrint(p_aout, "VLC is looking for:", fmt);
+    aout_FormatPrint(p_aout, "BeePlayer is looking for:", fmt);
 
     msg_Dbg(p_aout, "attempting to use device %i", p_sys->i_selected_dev);
 

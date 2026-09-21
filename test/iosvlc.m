@@ -1,5 +1,5 @@
 /*****************************************************************************
- * iosvlc.m: iOS specific development main executable for VLC media player
+ * iosvlc.m: iOS specific development main executable for BeePlayer
  *****************************************************************************
  * Copyright (C) 2020-2026 Videolabs
  *
@@ -121,7 +121,7 @@ static void vlc_terminate(void *data)
 /* Called after application launch */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _intfQueue = dispatch_queue_create("org.videolan.vlc.ios.intf",
+    _intfQueue = dispatch_queue_create("org.mutantcat.beeplayer.ios.intf",
                                        DISPATCH_QUEUE_SERIAL);
 
     /* Defer libVLC initialization until the main run loop is active.

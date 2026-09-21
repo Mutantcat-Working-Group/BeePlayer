@@ -289,7 +289,7 @@ static int Open( vlc_object_t * p_this )
     {
         /* XXX: for now only file with extended chunk are supported
          * why: because else we need to have support for rtjpeg+stupid nuv shit */
-        msg_Err( p_demux, "VLC doesn't support NUV without extended chunks (please upload samples)" );
+        msg_Err( p_demux, "BeePlayer doesn't support NUV without extended chunks (please upload samples)" );
         goto error;
     }
 
@@ -1037,4 +1037,3 @@ static uint64_t demux_IndexFindOffset(demux_index_t *p_idx, uint64_t i_offset)
     else
         return p_idx->idx[i_max].i_offset;
 }
-

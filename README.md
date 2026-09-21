@@ -1,140 +1,53 @@
-# VLC media player
+<div align=center>
+<img src="icon.png" style="width:100px;" width="100"/>
+<h2>BeePlayer</h2>
+</div>
 
-**VLC** is a libre and open source **media player** and **multimedia engine**,
-focused on **playing everything**, and **running everywhere**.
+### 一、功能简述
+- 一个自由、开源的**媒体播放器**与**多媒体引擎**，目标是播放一切、随处运行。
+- 能够读取绝大多数多媒体文件、光盘、网络串流与采集设备，并可进行转码、录制、推流等处理。
+- 内置可嵌入第三方应用的引擎 **libVLC**，提供 C、C++、Python、C# 等语言绑定。
+- 支持 Windows、macOS、GNU/Linux、BSD、Android、iOS 等主流平台。
 
-**VLC** can play most multimedia files, discs, streams, devices and is also able to
-convert, encode, **stream** and manipulate streams into numerous formats.
+### 二、部署方式
+1. 在支持的平台上安装对应发行包（Windows、macOS、Linux、Android、iOS）。
+2. 也可以从源码自行编译，编译相关说明见 [INSTALL](INSTALL) 文件。
+3. 开发者在自己的应用中集成 libVLC，即可获得播放、转码和串流能力。
 
-VLC is used by many over the world, on numerous platforms, for very different use cases.
+### 三、使用教程
+1. 打开 BeePlayer，通过“媒体”菜单打开文件、光盘、网络串流或采集设备。
+2. 使用内置播放列表、字幕、音视频均衡器、皮肤与可视化等功能。
+3. 命令行方式：`vlc [选项] <文件或流地址>`。
+4. 远程控制可启用 HTTP 界面或 telnet CLI 界面。
 
-The **engine of VLC** can be embedded into 3rd party applications, and is called *libVLC*.
+### 四、接口文档
+1. libVLC 公共 API
+    - C 头文件位于 `include/vlc`。
+    - 引擎源码位于 `lib/` 与 `src/`。
+2. 语言绑定
+    - C、C++、Python、C# 等绑定位于 `bindings/`。
+3. 插件与模块
+    - `modules/` 包含编解码器、封装、音频/视频输出、访问模块等插件体系。
 
-**VLC** is part of the [VideoLAN project](https://videolan.org) and
-is developed and supported by a community of volunteers.
+### 五、专注的点
+- 全格式覆盖与稳定播放。
+- 同一引擎跨平台运行。
+- 引擎可嵌入第三方程序，允许外部应用保持自己的许可证。
+- 自由软件生态，所有源码可审阅、可修改。
 
-The VideoLAN project was started at the university [École Centrale Paris](https://www.centralesupelec.fr/) who
-relicensed VLC under the GPLv2 license in February 2001. Since then, VLC has
-been downloaded **billions** of times.
+### 六、开发进度
+- [X] 多媒体文件播放
+- [X] 光盘与网络串流支持
+- [X] 转码、录制与推流
+- [X] 跨平台 GUI（桌面、移动端、Web 控制台）
+- [X] libVLC 嵌入式引擎
+- [X] 插件化编解码与访问架构
 
-## License
+### 七、许可证
+- BeePlayer 本体采用 GPLv2（或更新版本）授权。
+- libVLC 引擎采用 LGPLv2（或更新版本）授权，可嵌入第三方应用。
 
-**VLC** is released under the GPLv2 *(or later)* license.
-*On some platforms, it is de facto GPLv3, because of the licenses of dependencies*.
-
-**libVLC**, the engine is released under the LGPLv2 *(or later)* license. \
-This allows embedding the engine in 3rd party applications, while letting them to be licensed under other licenses.
-
-# Platforms
-
-VLC is available for the following platforms:
-- [Windows] *(from 7 and later, including UWP platforms and all versions of Windows 10)*
-- [macOS] *(10.10 and later)*
-- [GNU/Linux] and affiliated
-- [BSD] and affiliated
-- [Android] *(4.2 and later)*, including Android TV and Android Auto
-- [iOS] *(9 and later)*, including AppleTV and iPadOS
-- Haiku, OS/2 and a few others.
-
-[Windows]: https://www.videolan.org/vlc/download-windows.html
-[macOS]: https://www.videolan.org/vlc/download-macosx.html
-[GNU/Linux]: https://www.videolan.org/vlc/#download
-[BSD]: https://www.videolan.org/vlc/download-freebsd.html
-[Android]: https://www.videolan.org/vlc/download-android.html
-[iOS]: https://www.videolan.org/vlc/download-ios.html
-
-Not all platforms receive the same amount of care, due to our limited resources.
-
-**Nota Bene**: The [Android app](https://code.videolan.org/videolan/vlc-android/) and
-the [iOS app](https://code.videolan.org/videolan/vlc-ios/) are located in different repositories
-than the main one.
-
-# Contributing & Community
-
-**VLC** is maintained by a community of people, and VideoLAN is not paying any of them.\
-The community is composed of developers, helpers, maintainers, designers and writers that want
-this open source project to thrive.
-
-The main development of VLC is done in the C language, but this repository also contains
-plenty of C++, Obj-C, asm and Rust.
-
-Other repositories linked to vlc are done in languages including Kotlin/Java [(Android)](https://code.videolan.org/videolan/vlc-android/),
-Swift [(iOS)](https://code.videolan.org/videolan/vlc-ios/), and C# [(libVLCSharp)](https://code.videolan.org/videolan/libvlcsharp/).
-
-We need help with the following tasks:
-- Coding
-- Packaging for Windows, macOS and Linux distributions
-- Technical writing for the documentation
-- Design
-- Support
-- Community management and communication.
-
-Please contribute :)
-
-We are on IRC. You can find us on the **#videolan** channel on *[Libera.chat]*.
-
-[Libera.chat]: https://libera.chat
-
-## Contributions
-
-Contributions are now done through Merge Requests on our [GitLab repository](https://code.videolan.org/videolan/vlc/).
-
-CI and discussions should be resolved before a Merge Request can be merged.
-
-# libVLC
-
-**libVLC** is an embeddable engine for 3rd party applications and frameworks.
-
-It runs on the same platforms as VLC *(and sometimes on more)* and can provide playback,
-streaming and conversion of multimedia files and streams.
-
-
-**libVLC** has numerous bindings for other languages, such as C++, Python and C#.
-
-# Support
-
-## Links
-
-Some useful links that might help you:
-
-- [VLC web site](https://www.videolan.org/vlc/)
-- [Support](https://www.videolan.org/support/)
-- [Forums](https://forum.videolan.org/)
-- [Wiki](https://wiki.videolan.org/)
-- [Developer's Corner](https://wiki.videolan.org/Developers_Corner)
-- [VLC hacking guide](https://wiki.videolan.org/Hacker_Guide)
-- [Bugtracker](https://code.videolan.org/videolan/vlc/-/issues)
-- [VideoLAN web site](https://www.videolan.org/)
-
-## Source Code sitemap
-```
-ABOUT-NLS          - Notes on the Free Translation Project.
-AUTHORS            - VLC authors.
-COPYING            - The GPL license.
-COPYING.LIB        - The LGPL license.
-INSTALL            - Installation and building instructions.
-NEWS               - Important modifications between the releases.
-README             - Project summary.
-THANKS             - VLC contributors.
-
-bin/               - VLC binaries.
-bindings/          - libVLC bindings to other languages.
-compat/            - compatibility library for operating systems missing
-                     essential functionalities.
-contrib/           - Facilities for retrieving external libraries and building
-                     them for systems that don't have the right versions.
-doc/               - Miscellaneous documentation.
-extras/analyser    - Code analyser and editor specific files.
-extras/buildsystem - Different build system specific files.
-extras/misc        - Files that don't fit in the other extras/ categories.
-extras/package     - VLC packaging specific files such as spec files.
-extras/tools/      - Facilities for retrieving external building tools needed
-                     for systems that don't have the right versions.
-include/           - Header files.
-lib/               - libVLC source code.
-modules/           - VLC plugins and modules. Most of the code is here.
-po/                - VLC translations.
-share/             - Common resource files.
-src/               - libvlccore source code.
-test/              - Testing system.
-```
+### 八、贡献与社区
+- 欢迎通过 Merge Request 贡献代码；参与前请先解决 CI 与讨论中的问题。
+- 社区成员包括开发者、打包者、文档编写者、设计师与支持人员。
+- 相关资源：[BeePlayer 支持](https://www.videolan.org/support/)、[论坛](https://forum.videolan.org/)、[Wiki](https://wiki.videolan.org/)、[Bug 跟踪](https://code.videolan.org/videolan/vlc/-/issues)。

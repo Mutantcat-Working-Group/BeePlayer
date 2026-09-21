@@ -48,17 +48,17 @@ FirstRunWizard::FirstRunWizard( qt_intf_t *_p_intf, QWidget *parent)
     ui.setupUi( this );
 
     /* Set the privacy and network policy */
-    ui.policy->setHtml( qtr( "<p>In order to protect your privacy, <i>VLC media player</i> "
+    ui.policy->setHtml( qtr( "<p>In order to protect your privacy, <i>BeePlayer</i> "
         "does <b>not</b> collect personal data or transmit them, "
         "not even in anonymized form, to anyone."
         "</p>\n"
-        "<p>Nevertheless, <i>VLC</i> is able to automatically retrieve "
+        "<p>Nevertheless, <i>BeePlayer</i> is able to automatically retrieve "
         "information about the media in your play queue from third party "
         "Internet-based services. This includes cover art, track names, "
         "artist names and other meta-data."
         "</p>\n"
         "<p>Consequently, this may entail identifying some of your media files to third party "
-        "entities. Therefore the <i>VLC</i> developers require your express "
+        "entities. Therefore the <i>BeePlayer</i> developers require your express "
         "consent for the media player to access the Internet automatically."
         "</p>\n" ) );
     ui.policy->setReadOnly( true );
@@ -202,13 +202,13 @@ void FirstRunWizard::updateColorLabel( QAbstractButton* btn )
     switch ( colorSchemeGroup->id(btn) )
     {
         case ColorSchemeModel::System:
-            ui.explainerLabel->setText( qtr( "<i>VLC will automatically switch to dark mode accordingly with system settings</i>" ) );
+            ui.explainerLabel->setText( qtr( "<i>BeePlayer will automatically switch to dark mode accordingly with system settings</i>" ) );
             break;
         case ColorSchemeModel::Day:
-            ui.explainerLabel->setText( qtr( "<i>VLC will automatically use light mode</i>" ) );
+            ui.explainerLabel->setText( qtr( "<i>BeePlayer will automatically use light mode</i>" ) );
             break;
         case ColorSchemeModel::Night:
-            ui.explainerLabel->setText( qtr( "<i>VLC will automatically use dark mode</i>" ) );
+            ui.explainerLabel->setText( qtr( "<i>BeePlayer will automatically use dark mode</i>" ) );
             break;
     }
 }
@@ -222,10 +222,10 @@ void FirstRunWizard::updateLayoutLabel( QAbstractButton* btn )
     switch ( ui.layoutGroup->id( btn ) )
     {
         case MODERN:
-            ui.layoutExplainer->setText( qtr( "<i>VLC will use a modern layout with no menubar or pinned controls but with client-side decoration</i>" ) );
+            ui.layoutExplainer->setText( qtr( "<i>BeePlayer will use a modern layout with no menubar or pinned controls but with client-side decoration</i>" ) );
             break;
         case CLASSIC:
-            ui.layoutExplainer->setText( qtr( "<i>VLC will use a classic layout with a menubar and pinned controls but with no client-side decoration</i>" ) );
+            ui.layoutExplainer->setText( qtr( "<i>BeePlayer will use a classic layout with a menubar and pinned controls but with no client-side decoration</i>" ) );
             break;
     }
 }

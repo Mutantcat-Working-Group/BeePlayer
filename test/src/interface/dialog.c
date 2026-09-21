@@ -36,7 +36,7 @@
 #undef NDEBUG
 #include <assert.h>
 
-#define TITLE "VLC Dialogs test"
+#define TITLE "BeePlayer Dialogs test"
 
 /*
  * Build and exec qt dialog test:

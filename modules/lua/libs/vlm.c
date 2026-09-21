@@ -119,7 +119,7 @@ static int vlclua_vlm_execute_command( lua_State *L )
 #else
 static int vlclua_vlm_new( lua_State *L )
 {
-    return luaL_error( L, "Cannot start VLM because it was disabled when compiling VLC." );
+    return luaL_error( L, "Cannot start VLM because it was disabled when compiling BeePlayer." );
 }
 #endif
 

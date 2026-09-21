@@ -728,7 +728,7 @@ static void *EventThread( void *p_this )
     sys->hwnd =
         CreateWindowEx( WS_EX_NOPARENTNOTIFY,
                     sys->class_main,                 /* name of window class */
-                    TEXT(VOUT_TITLE) TEXT(" (VLC Video Output)"),/* window title */
+                    TEXT(VOUT_TITLE) TEXT(" (BeePlayer Video Output)"),/* window title */
                     i_window_style,                          /* window style */
                     CW_USEDEFAULT,                   /* default X coordinate */
                     CW_USEDEFAULT,                   /* default Y coordinate */
@@ -808,7 +808,7 @@ static int Open(vlc_window_t *wnd)
         return VLC_ENOMEM;
 
     _snwprintf( sys->class_main, ARRAY_SIZE(sys->class_main),
-               TEXT("VLC standalone window %p"), (void *)sys );
+               TEXT("BeePlayer standalone window %p"), (void *)sys );
 
     HINSTANCE hInstance = GetModuleHandle(NULL);
 

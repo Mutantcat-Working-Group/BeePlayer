@@ -1,6 +1,6 @@
 /**
  * @file window.c
- * @brief Android native window provider module for VLC media player
+ * @brief Android native window provider module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2013 VLC authors and VideoLAN

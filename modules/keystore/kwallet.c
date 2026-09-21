@@ -71,7 +71,7 @@ static const char* psz_folder = VLC_KEYSTORE_NAME;
 static const char* psz_kwallet_interface = "org.kde.KWallet";
 
 #define DBUS_INSTANCE_PREFIX "instance"
-#define KWALLET_APP_ID "org.videolan.kwallet"
+#define KWALLET_APP_ID "org.mutantcat.beeplayer"
 
 /*
  * There are two kwallet services :

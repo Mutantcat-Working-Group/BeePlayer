@@ -185,11 +185,11 @@
         <Image id="main.normal.titlebar.left.max" image="main.png.titlebar.left" action="move" action2="main.unmaximize()" visible="main.isMaximized()"/>
         <Image id="main.normal.titlebar.right.max" x="480" image="main.png.titlebar.right" action="move" action2="main.unmaximize()" lefttop="righttop" rightbottom="righttop" visible="main.isMaximized()"/>
         <Image id="main.normal.titlebar.center.max" x="140" image="main.png.titlebar.center" action="move" action2="main.unmaximize()" resize="scale" rightbottom="righttop" visible="main.isMaximized()"/>
-        <Button up="sysbuttons.png.close.normal" down="sysbuttons.png.close.down" over="sysbuttons.png.close.hover" action="vlc.quit()" id="main.normal.titlebar.close" x="477" y="3" lefttop="righttop" rightbottom="righttop" tooltiptext="Quit VLC"/>
-        <Button up="sysbuttons.png.unmax.normal" down="sysbuttons.png.unmax.down" over="sysbuttons.png.unmax.hover" action="main.unmaximize()" id="main.normal.titlebar.unmax" x="457" y="3" lefttop="righttop" rightbottom="righttop" visible="main.isMaximized()" tooltiptext="Unmaximize VLC"/>
-        <Button up="sysbuttons.png.max.normal" down="sysbuttons.png.max.down" over="sysbuttons.png.max.hover" action="main.maximize()" id="main.normal.titlebar.max" x="457" y="3" lefttop="righttop" rightbottom="righttop" visible="not main.isMaximized()" tooltiptext="Maximize VLC"/>
-        <Button up="sysbuttons.png.min.normal" down="sysbuttons.png.min.down" over="sysbuttons.png.min.hover" action="vlc.minimize()" id="main.normal.titlebar.min" x="437" y="3" lefttop="righttop" rightbottom="righttop" tooltiptext="Minimize VLC"/>
-        <Button up="sysbuttons.png.menu.normal" down="sysbuttons.png.menu.down" over="sysbuttons.png.menu.hover" action="dialogs.popup()" id="main.normal.titlebar.menu" x="6" y="3" tooltiptext="VLC Menu"/>
+        <Button up="sysbuttons.png.close.normal" down="sysbuttons.png.close.down" over="sysbuttons.png.close.hover" action="vlc.quit()" id="main.normal.titlebar.close" x="477" y="3" lefttop="righttop" rightbottom="righttop" tooltiptext="Quit BeePlayer"/>
+        <Button up="sysbuttons.png.unmax.normal" down="sysbuttons.png.unmax.down" over="sysbuttons.png.unmax.hover" action="main.unmaximize()" id="main.normal.titlebar.unmax" x="457" y="3" lefttop="righttop" rightbottom="righttop" visible="main.isMaximized()" tooltiptext="Unmaximize BeePlayer"/>
+        <Button up="sysbuttons.png.max.normal" down="sysbuttons.png.max.down" over="sysbuttons.png.max.hover" action="main.maximize()" id="main.normal.titlebar.max" x="457" y="3" lefttop="righttop" rightbottom="righttop" visible="not main.isMaximized()" tooltiptext="Maximize BeePlayer"/>
+        <Button up="sysbuttons.png.min.normal" down="sysbuttons.png.min.down" over="sysbuttons.png.min.hover" action="vlc.minimize()" id="main.normal.titlebar.min" x="437" y="3" lefttop="righttop" rightbottom="righttop" tooltiptext="Minimize BeePlayer"/>
+        <Button up="sysbuttons.png.menu.normal" down="sysbuttons.png.menu.down" over="sysbuttons.png.menu.hover" action="dialogs.popup()" id="main.normal.titlebar.menu" x="6" y="3" tooltiptext="BeePlayer Menu"/>
         <Button up="sysbuttons.png.aot0.normal" down="sysbuttons.png.aot0.down" over="sysbuttons.png.aot0.hover" action="vlc.onTop()" id="main.normal.titlebar.aot0" x="26" y="3" visible="not vlc.isOnTop" tooltiptext="Enable Always On Top"/>
         <Button up="sysbuttons.png.aot1.normal" down="sysbuttons.png.aot1.down" over="sysbuttons.png.aot1.hover" action="vlc.onTop()" id="main.normal.titlebar.aot1" x="26" y="3" visible="vlc.isOnTop" tooltiptext="Disable Always On Top"/>
       </Panel>
@@ -250,7 +250,7 @@
   <Window id="eqwin" visible="false" position="Center">
     <Layout id="eqwin-main" width="330" height="171" minwidth="330" maxwidth="330" minheight="171" maxheight="171">
       <Image id="eq.normal.eq" image="eq.png.bg" action="move"/>
-      <Button up="sysbuttons.png.menu.normal" down="sysbuttons.png.menu.down" over="sysbuttons.png.menu.hover" action="dialogs.popup()" id="eqwin.normal.titlebar.menu" x="6" y="3" tooltiptext="VLC Menu"/>
+      <Button up="sysbuttons.png.menu.normal" down="sysbuttons.png.menu.down" over="sysbuttons.png.menu.hover" action="dialogs.popup()" id="eqwin.normal.titlebar.menu" x="6" y="3" tooltiptext="BeePlayer Menu"/>
       <Button up="sysbuttons.png.close.normal" down="sysbuttons.png.close.down" over="sysbuttons.png.close.hover" action="eqwin.hide()" id="eqwin.normal.titlebar.close" x="307" y="3" lefttop="righttop" rightbottom="righttop" tooltiptext="Close Equalizer Window"/>
       <Slider id="Unnamed Slider #61" x="81" y="36" points="(0,115),(0,5)" value="equalizer.preamp" tooltiptext="Pre Amplification(dB)" up="eq.png.slider.normal" down="eq.png.slider.hover" over="eq.png.slider.hover"/>
       <Slider id="Unnamed Slider #62" x="121" y="36" points="(0,115),(0,5)" value="equalizer.band(0)" tooltiptext="60Hz" up="eq.png.slider.normal" down="eq.png.slider.hover" over="eq.png.slider.hover"/>
@@ -273,7 +273,7 @@
         <Image id="pl.normal.titlebar.left" image="pl.png.titlebar.left" action="move"/>
         <Image id="pl.normal.titlebar.right" x="480" image="pl.png.titlebar.right" action="move" lefttop="righttop" rightbottom="righttop"/>
         <Image id="pl.normal.titlebar.center" x="140" image="main.png.titlebar.center" action="move" resize="scale" rightbottom="righttop"/>
-        <Button up="sysbuttons.png.menu.normal" down="sysbuttons.png.menu.down" over="sysbuttons.png.menu.hover" action="dialogs.popup()" id="plwin.normal.titlebar.menu" x="6" y="3" tooltiptext="VLC Menu"/>
+        <Button up="sysbuttons.png.menu.normal" down="sysbuttons.png.menu.down" over="sysbuttons.png.menu.hover" action="dialogs.popup()" id="plwin.normal.titlebar.menu" x="6" y="3" tooltiptext="BeePlayer Menu"/>
         <Button up="sysbuttons.png.close.normal" down="sysbuttons.png.close.down" over="sysbuttons.png.close.hover" action="plwin.hide()" id="plwin.normal.titlebar.close" x="477" y="3" lefttop="righttop" rightbottom="righttop" tooltiptext="Close Playlist Window"/>
       </Panel>
       <Panel id="pl.normal.component" y="24" width="0" height="0" rightbottom="rightbottom">
@@ -309,7 +309,7 @@
         <Image id="fsc.pl.normal.titlebar.left" image="pl.png.titlebar.left" action="move"/>
         <Image id="fsc.pl.normal.titlebar.right" x="480" image="pl.png.titlebar.right" action="move" lefttop="righttop" rightbottom="righttop"/>
         <Image id="fsc.pl.normal.titlebar.center" x="140" image="main.png.titlebar.center" action="move" resize="scale" rightbottom="righttop"/>
-        <Button up="sysbuttons.png.menu.normal" down="sysbuttons.png.menu.down" over="sysbuttons.png.menu.hover" action="dialogs.popup()" id="fsc.plwin.normal.titlebar.menu" x="6" y="3" tooltiptext="VLC Menu"/>
+        <Button up="sysbuttons.png.menu.normal" down="sysbuttons.png.menu.down" over="sysbuttons.png.menu.hover" action="dialogs.popup()" id="fsc.plwin.normal.titlebar.menu" x="6" y="3" tooltiptext="BeePlayer Menu"/>
         <Button up="sysbuttons.png.close.normal" down="sysbuttons.png.close.down" over="sysbuttons.png.close.hover" action="fullscreenController.setLayout(fsc_normal)" id="fsc.plwin.normal.titlebar.close" x="477" y="3" lefttop="righttop" rightbottom="righttop" tooltiptext="Close Playlist Window"/>
       </Panel>
       <Panel id="fsc.pl.normal.component" y="24" width="0" height="0" rightbottom="rightbottom">
@@ -335,7 +335,7 @@
     </Layout>
     <Layout id="fsc.eqwin-main" width="330" height="171" minwidth="330" maxwidth="330" minheight="171" maxheight="171">
       <Image id="fsc.eq.normal.eq" image="eq.png.bg" action="move"/>
-      <Button up="sysbuttons.png.menu.normal" down="sysbuttons.png.menu.down" over="sysbuttons.png.menu.hover" action="dialogs.popup()" id="fsc.eqwin.normal.titlebar.menu" x="6" y="3" tooltiptext="VLC Menu"/>
+      <Button up="sysbuttons.png.menu.normal" down="sysbuttons.png.menu.down" over="sysbuttons.png.menu.hover" action="dialogs.popup()" id="fsc.eqwin.normal.titlebar.menu" x="6" y="3" tooltiptext="BeePlayer Menu"/>
       <Button up="sysbuttons.png.close.normal" down="sysbuttons.png.close.down" over="sysbuttons.png.close.hover" action="fullscreenController.setLayout(fsc_normal)" id="fsc.eqwin.normal.titlebar.close" x="307" y="3" lefttop="righttop" rightbottom="righttop" tooltiptext="Close Equalizer Window"/>
       <Slider id="fsc.Unnamed Slider #61" x="81" y="36" points="(0,115),(0,5)" value="equalizer.preamp" tooltiptext="Pre Amplification(dB)" up="eq.png.slider.normal" down="eq.png.slider.hover" over="eq.png.slider.hover"/>
       <Slider id="fsc.Unnamed Slider #62" x="121" y="36" points="(0,115),(0,5)" value="equalizer.band(0)" tooltiptext="60Hz" up="eq.png.slider.normal" down="eq.png.slider.hover" over="eq.png.slider.hover"/>

@@ -1,5 +1,5 @@
 --[==========================================================================[
- cli.lua: CLI module for VLC
+ cli.lua: CLI module for BeePlayer
 --[==========================================================================[
  Copyright (C) 2007-2011 the VideoLAN team
 
@@ -23,7 +23,7 @@
 
 description=
 [============================================================================[
- Command Line Interface for VLC
+ Command Line Interface for BeePlayer
 
  This is a modules/control/oldrc.c look alike (with a bunch of new features).
  It also provides a VLM interface copied from the telnet interface.
@@ -149,7 +149,7 @@ function logout(name,client)
         client:send("Bye-bye!\r\n")
         client:del()
     else
-        client:append("Error: Can't logout of stdin/stdout. Use quit or shutdown to close VLC.")
+        client:append("Error: Can't logout of stdin/stdout. Use quit or shutdown to close BeePlayer.")
     end
 end
 
@@ -619,13 +619,13 @@ commands_ordered = {
     { "save_env"; { func = save_env; help = "save env vars (for future clients)"; adv = true } };
     { "alias"; { func = skip(alias); args = "[cmd]"; help = "set/get command aliases"; adv = true } };
     { "description"; { func = print_text("Description",description); help = "describe this module" } };
-    { "license"; { func = print_text("License message",vlc.misc.license()); help = "print VLC's license message"; adv = true } };
+    { "license"; { func = print_text("License message",vlc.misc.license()); help = "print BeePlayer's license message"; adv = true } };
     { "help"; { func = help; args = "[pattern]"; help = "a help message"; aliases = { "?" } } };
     { "longhelp"; { func = help; args = "[pattern]"; help = "a longer help message" } };
     { "lock"; { func = lock; help = "lock the telnet prompt" } };
     { "logout"; { func = logout; help = "exit (if in a socket connection)" } };
-    { "quit"; { func = quit; help = "quit VLC (or logout if in a socket connection)" } };
-    { "shutdown"; { func = shutdown; help = "shutdown VLC" } };
+    { "quit"; { func = quit; help = "quit BeePlayer (or logout if in a socket connection)" } };
+    { "shutdown"; { func = shutdown; help = "shutdown BeePlayer" } };
     }
 
 commands = {}

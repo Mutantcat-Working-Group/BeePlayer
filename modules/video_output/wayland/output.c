@@ -1,6 +1,6 @@
 /**
  * @file input.c
- * @brief Wayland input events for VLC media player
+ * @brief Wayland input events for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2018 Rémi Denis-Courmont

@@ -395,7 +395,7 @@ int InitVideoEnc( vlc_object_t *p_this )
         msg_Err( p_enc, "cannot find encoder %s\n"
 "*** Your Libav/FFmpeg installation is crippled.   ***\n"
 "*** Please check with your Libav/FFmpeg packager. ***\n"
-"*** This is NOT a VLC media player issue.   ***", psz_namecodec );
+"*** This is NOT a BeePlayer issue.   ***", psz_namecodec );
 
 #if !defined(_WIN32)
         vlc_dialog_display_error( p_enc, _("Streaming / Transcoding failed"), _(
@@ -407,7 +407,7 @@ int InitVideoEnc( vlc_object_t *p_this )
 "%s.\n"
 "If you don't know how to fix this, ask for support from your distribution.\n"
 "\n"
-"This is not an error inside VLC media player.\n"
+"This is not an error inside BeePlayer.\n"
 "Do not contact the VideoLAN project about this issue.\n"),
             psz_namecodec );
 #endif
@@ -901,7 +901,7 @@ int InitVideoEnc( vlc_object_t *p_this )
         bool uv_flipped;
         p_context->pix_fmt = FindFfmpegChroma( p_enc->fmt_in.video.i_chroma, &uv_flipped );
         if (unlikely(uv_flipped))
-            msg_Warn(p_enc, "VLC chroma needs UV planes swapping %4.4s",
+            msg_Warn(p_enc, "BeePlayer chroma needs UV planes swapping %4.4s",
                      (char*)&p_enc->fmt_in.video.i_chroma);
     }
 
@@ -953,7 +953,7 @@ errmsg:
                 type = types[p_enc->fmt_in.i_cat];
             msg_Err( p_enc, "cannot open %4.4s %s encoder", fcc.txt, type );
             vlc_dialog_display_error( p_enc, _("Streaming / Transcoding failed"),
-                _("VLC could not open the %4.4s %s encoder."),
+                _("BeePlayer could not open the %4.4s %s encoder."),
                 fcc.txt, vlc_gettext(type) );
             av_dict_free(&options);
             goto error;

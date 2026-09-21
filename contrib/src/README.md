@@ -50,7 +50,7 @@ source code is fully ready. Otherwise Makefile dependencies will break
 ### Conditional builds
 
 As far as possible, build rules should determine automatically whether
-a package is useful (for VLC media player) or not. Useful packages
+a package is useful (for BeePlayer) or not. Useful packages
 should be listed in the PKGS special variable. See some examples:
 
 	# FFmpeg is always useful

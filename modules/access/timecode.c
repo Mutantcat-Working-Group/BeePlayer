@@ -1,6 +1,6 @@
 /**
  * @file timecode.c
- * @brief Time code sub-picture generator for VLC media player
+ * @brief Time code sub-picture generator for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2013 Rémi Denis-Courmont

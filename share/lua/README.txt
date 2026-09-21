@@ -1,56 +1,56 @@
-Instructions to code your own VLC Lua scripts and extensions
+Instructions to code your own BeePlayer Lua scripts and extensions
 
 1 - About Lua
 =============
 
 Lua documentation is available on http://www.lua.org/ . The reference manual
 is very useful: http://www.lua.org/manual/5.1/ .
-VLC uses Lua 5.1
+BeePlayer uses Lua 5.1
 All the Lua standard libraries are available.
 
 
-2 - Lua in VLC
+2 - Lua in BeePlayer
 ==============
 
-Several types of VLC Lua scripts can currently be coded:
+Several types of BeePlayer Lua scripts can currently be coded:
  * Playlist and websites parsers (see playlist/README.txt)
  * Art fetchers (see meta/README.txt)
  * Interfaces (see intf/README.txt)
  * Extensions (see extensions/README.txt)
  * Services Discovery (see sd/README.txt)
 
-Lua scripts are tried in alphabetical order in the user's VLC config
+Lua scripts are tried in alphabetical order in the user's BeePlayer config
 directory lua/{playlist,meta,intf}/ subdirectory on Windows and Mac OS X or
 in the user's local share directory (~/.local/share/vlc/lua/... on linux),
-then in the global VLC lua/{playlist,meta,intf}/ directory.
+then in the global BeePlayer lua/{playlist,meta,intf}/ directory.
 
 
-3 - VLC specific Lua modules
+3 - BeePlayer specific Lua modules
 ============================
 
-All VLC specifics modules are in the "vlc" object. For example, if you want
-to use the "info" function of the "msg" VLC specific Lua module:
+All BeePlayer specifics modules are in the "vlc" object. For example, if you want
+to use the "info" function of the "msg" BeePlayer specific Lua module:
 vlc.msg.info( "This is an info message and will be displayed in the console" )
 
-Note: availability of the different VLC specific Lua modules depends on
-the type of VLC Lua script your are in.
+Note: availability of the different BeePlayer specific Lua modules depends on
+the type of BeePlayer Lua script your are in.
 
 Configuration
 -------------
-config.get( name ): Get the VLC configuration option "name"'s value.
-config.set( name, value ): Set the VLC configuration option "name"'s value.
-config.datadir(): Get the VLC data directory.
-config.userdatadir(): Get the user's VLC data directory.
+config.get( name ): Get the BeePlayer configuration option "name"'s value.
+config.set( name, value ): Set the BeePlayer configuration option "name"'s value.
+config.datadir(): Get the BeePlayer data directory.
+config.userdatadir(): Get the user's BeePlayer data directory.
 config.homedir(): Get the user's home directory.
-config.configdir(): Get the user's VLC config directory.
-config.cachedir(): Get the user's VLC cache directory.
+config.configdir(): Get the user's BeePlayer config directory.
+config.cachedir(): Get the user's BeePlayer cache directory.
 
 config.datadir_list( name ): Get the list of possible data directories in
                              order of priority, appended by "name"
 
 Dialog
 ------
-local d = vlc.dialog( "My VLC Extension" ): Create a new UI dialog, with a human-readable title: "My VLC Extension"
+local d = vlc.dialog( "My BeePlayer Extension" ): Create a new UI dialog, with a human-readable title: "My BeePlayer Extension"
 d:show(): Show this dialog.
 d:hide(): Hide (but not close) this dialog.
 d:delete(): Close and delete this dialog.
@@ -206,16 +206,16 @@ Misc (Interfaces only)
 /!\ NB: this namespace is ONLY usable for interfaces.
 ---
 ----------------------------------------------------------------
-misc.version(): Get the VLC version string.
-misc.copyright(): Get the VLC copyright statement.
-misc.license(): Get the VLC license.
+misc.version(): Get the BeePlayer version string.
+misc.copyright(): Get the BeePlayer copyright statement.
+misc.license(): Get the BeePlayer license.
 
 misc.action_id( name ): get the id of the given action.
 
 misc.mdate(): Get the current date (in microseconds).
 misc.mwait(): Wait for the given date (in microseconds).
 
-misc.quit(): Quit VLC.
+misc.quit(): Quit BeePlayer.
 
 Net
 ---
@@ -322,13 +322,13 @@ playlist.add( ... ): Add a bunch of items to the playlist.
       .encodedby: the item's EncodedBy (OPTIONAL, meta data)
       .arturl: the item's ArtURL (OPTIONAL, meta data)
       .trackid: the item's TrackID (OPTIONAL, meta data)
-      .options: a list of VLC options (OPTIONAL)
+      .options: a list of BeePlayer options (OPTIONAL)
                 example: .options = { "run-time=60" }
       .duration: stream duration in seconds (OPTIONAL)
       .meta: custom meta data (OPTIONAL, meta data)
              A .meta field is a table of custom meta key value pairs.
              example: .meta = { ["GVP docid"] = "-5784010886294950089", ["GVP version] = "1.1", Hello = "World!" }
-  Invalid playlist items will be discarded by VLC.
+  Invalid playlist items will be discarded by BeePlayer.
 playlist.enqueue( ... ): like playlist.add() except that track isn't played.
 playlist.get( [what, [tree]] ): Get the playlist.
   If "what" is a number, then this will return the corresponding playlist

@@ -2,12 +2,12 @@ dnl Autoconf settings for vlc
 
 AC_COPYRIGHT([Copyright 1999-2026 VLC authors and VideoLAN])
 
-AC_INIT([vlc], [4.0.0-dev])
-VERSION_MAJOR=4
+AC_INIT([BeePlayer], [1.0.20260921])
+VERSION_MAJOR=1
 VERSION_MINOR=0
-VERSION_REVISION=0
+VERSION_REVISION=20260921
 VERSION_EXTRA=0
-VERSION_DEV=dev
+VERSION_DEV=""
 
 VERSION_DATE=$(
     VERSION_PATTERN='^v?([[0-9]]+\.?)+(-[[0-9]]+)?$'
@@ -5190,7 +5190,7 @@ dnl
 dnl  the VLC binary
 dnl
 AC_ARG_ENABLE([vlc],
-  AS_HELP_STRING([--enable-vlc], [build the VLC media player (default enabled)]))
+  AS_HELP_STRING([--enable-vlc], [build the BeePlayer (default enabled)]))
 AM_CONDITIONAL([BUILD_VLC], [test "${enable_vlc}" != "no" -a "$vlc_winstore_app" = "0"])
 
 dnl
@@ -5294,7 +5294,7 @@ AC_CONFIG_FILES([
 
 AM_COND_IF([KDE_SOLID], [
   AC_CONFIG_FILES([
-    share/org.videolan.vlc.appdata.xml.in
+    share/org.mutantcat.beeplayer.appdata.xml.in
   ])
 ])
 

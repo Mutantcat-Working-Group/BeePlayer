@@ -84,11 +84,11 @@ API_AVAILABLE(macos(MIN_MACOS), ios(MIN_IOS), tvos(MIN_TVOS) VISIONOS_API_AVAILA
 - (id)init:(audio_output_t*)aout
 {
     _aout = aout;
-    _dataQueue = dispatch_queue_create("VLC AVSampleBuffer data queue", DISPATCH_QUEUE_SERIAL);
+    _dataQueue = dispatch_queue_create("BeePlayer AVSampleBuffer data queue", DISPATCH_QUEUE_SERIAL);
     if (_dataQueue == nil)
         return nil;
 
-    _timeQueue = dispatch_queue_create("VLC AVSampleBuffer time queue", DISPATCH_QUEUE_SERIAL);
+    _timeQueue = dispatch_queue_create("BeePlayer AVSampleBuffer time queue", DISPATCH_QUEUE_SERIAL);
     if (_timeQueue == nil)
         return nil;
 

@@ -1,6 +1,6 @@
 /**
  * @file sdp.c
- * @brief Real-Time Protocol (RTP) demux module for VLC media player
+ * @brief Real-Time Protocol (RTP) demux module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2020 Rémi Denis-Courmont

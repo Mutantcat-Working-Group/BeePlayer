@@ -956,7 +956,7 @@ opengl_fragment_shader_init(struct vlc_gl_sampler *sampler, bool expose_planes)
         fmt->primaries == COLOR_PRIMARIES_BT2020)
     {
         // no warning for HLG because it's more or less backwards-compatible
-        msg_Warn(priv->gl, "VLC needs to be built with support for libplacebo "
+        msg_Warn(priv->gl, "BeePlayer needs to be built with support for libplacebo "
                  "in order to display wide gamut or HDR signals correctly.");
     }
 #endif

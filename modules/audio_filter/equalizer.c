@@ -65,7 +65,7 @@ static void Close( filter_t * );
 
 #define VLC_BANDS_TEXT N_( "Use VLC frequency bands" )
 #define VLC_BANDS_LONGTEXT N_( \
-         "Use the VLC frequency bands. Otherwise, use the ISO Standard " \
+         "Use the BeePlayer frequency bands. Otherwise, use the ISO Standard " \
          "frequency bands." )
 
 #define TWOPASS_TEXT N_( "Two pass" )

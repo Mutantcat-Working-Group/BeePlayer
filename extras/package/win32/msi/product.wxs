@@ -45,7 +45,7 @@
 
         <MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit."/>
         <Property Id="NSISLOCATION">
-            <RegistrySearch Id="NSISLOCATION" Type="raw" Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\VLC media player" Name="UninstallString" />
+            <RegistrySearch Id="NSISLOCATION" Type="raw" Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\BeePlayer" Name="UninstallString" />
         </Property>
 
         <Icon Id="vlc.ico" SourceFile="$(var.SourceDir)/vlc.ico"/>
@@ -63,7 +63,7 @@
         <Property Id="ApplicationFolderName" Value="$(var.Manufacturer)\$(var.AppFolder)" />
         <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
         <Property Id="APPLICATIONFOLDER">
-            <RegistrySearch Id="FindInstallRegDir" Type="raw" Root="HKLM" Win64="$(var.Win64)" Key="Software\VideoLAN\VLC" Name="InstallDir" />
+            <RegistrySearch Id="FindInstallRegDir" Type="raw" Root="HKLM" Win64="$(var.Win64)" Key="Software\Mutantcat\BeePlayer" Name="InstallDir" />
         </Property>
 
         <WixVariable Id="WixUISupportPerUser" Value="1" />
@@ -85,11 +85,11 @@
 
         <Directory Id='TARGETDIR' Name='SourceDir'>
             <Directory Id='$(var.PlatformProgramFilesFolder)' Name='PFiles'>
-                <Directory Id='VideoLANFolder' Name='$(var.Manufacturer)'>
+                <Directory Id='MutantcatFolder' Name='$(var.Manufacturer)'>
                     <Directory Id='APPLICATIONFOLDER' Name='$(var.AppFolder)' FileSource="$(var.SourceDir)">
 
                         <Component Id="InstallRegDir" Guid="$(var.CompInstallRegDir)" DiskId="1" Win64="$(var.Win64)">
-                            <RegistryKey Id='RegInstallDir' Root='HKLM' Key='Software\VideoLAN\VLC' Action='createAndRemoveOnUninstall' >
+                            <RegistryKey Id='RegInstallDir' Root='HKLM' Key='Software\Mutantcat\BeePlayer' Action='createAndRemoveOnUninstall' >
                                 <RegistryValue Name='InstallDir' Type='string' Value='[APPLICATIONFOLDER]' />
                             </RegistryKey>
                         </Component>
@@ -106,12 +106,12 @@
                                 Advertise='yes' />
 
                             <!-- Capabilities keys for Vista/7 "Set Program Access and Defaults" -->
-                            <RegistryValue Root="HKLM" Key="Software\Clients\Media\VLC\Capabilities" Name="ApplicationDescription" Value="$(var.ProductName)" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Clients\Media\VLC\Capabilities" Name="ApplicationIcon" Value="[#vlc.exe],0" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Clients\Media\VLC\Capabilities" Name="ApplicationName" Value="$(var.ProductName)" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Clients\Media\VLC\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Clients\Media\VLC\shell\Open\command" Value="&quot;[#vlc.exe]&quot; --started-from-file &quot;%1&quot;" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\RegisteredApplications" Name="$(var.ShortProductName)" Value="Software\Clients\Media\VLC\Capabilities" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Clients\Media\BeePlayer\Capabilities" Name="ApplicationDescription" Value="$(var.ProductName)" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Clients\Media\BeePlayer\Capabilities" Name="ApplicationIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Clients\Media\BeePlayer\Capabilities" Name="ApplicationName" Value="$(var.ProductName)" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Clients\Media\BeePlayer\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Clients\Media\BeePlayer\shell\Open\command" Value="&quot;[#vlc.exe]&quot; --started-from-file &quot;%1&quot;" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\RegisteredApplications" Name="$(var.ShortProductName)" Value="Software\Clients\Media\BeePlayer\Capabilities" Type="string" />
 
                             <!-- Open With... contextual menu -->
                             <RegistryValue Root="HKCR" Key="Applications\vlc.exe\shell\open" Name="$(var.ShortProductName)" Value="$(var.ProductName)" Type="string" />
@@ -157,93 +157,93 @@
 
                         <Component Id='CompPlayDiscs' Guid='b0d90296-b20c-4c74-a3b3-a7694e011f25' Win64="$(var.Win64)">
                             <!-- Audio CD -->
-                            <RegistryValue Root="HKCR" Key="AudioCD\shell\PlayWithVLC" Value="Play with VLC media player" Type="string" />
-                            <RegistryValue Root="HKCR" Key="AudioCD\shell\PlayWithVLC\command" Value="&quot;[#vlc.exe]&quot; --started-from-file cdda:///%1" Type="string" />
+                            <RegistryValue Root="HKCR" Key="AudioCD\shell\PlayWithBeePlayer" Value="Play with BeePlayer" Type="string" />
+                            <RegistryValue Root="HKCR" Key="AudioCD\shell\PlayWithBeePlayer\command" Value="&quot;[#vlc.exe]&quot; --started-from-file cdda:///%1" Type="string" />
                             <!-- DVD -->
-                            <RegistryValue Root="HKCR" Key="DVD\shell\PlayWithVLC" Value="Play with VLC media player" Type="string" />
-                            <RegistryValue Root="HKCR" Key="DVD\shell\PlayWithVLC\command" Value="&quot;[#vlc.exe]&quot; --started-from-file dvd:///%1" Type="string" />
+                            <RegistryValue Root="HKCR" Key="DVD\shell\PlayWithBeePlayer" Value="Play with BeePlayer" Type="string" />
+                            <RegistryValue Root="HKCR" Key="DVD\shell\PlayWithBeePlayer\command" Value="&quot;[#vlc.exe]&quot; --started-from-file dvd:///%1" Type="string" />
 
                             <!-- DVD video Handler -->
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayDVDMovieOnArrival" Name="VLCPlayDVDMovieOnArrival" Value="" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayDVDMovieOnArrival" Name="Action" Value="Play DVD movie" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayDVDMovieOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayDVDMovieOnArrival" Name="InvokeProgID" Value="VLC.DVDMovie" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayDVDMovieOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayDVDMovieOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayDVDMovieOnArrival" Name="BeePlayerPlayDVDMovieOnArrival" Value="" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayDVDMovieOnArrival" Name="Action" Value="Play DVD movie" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayDVDMovieOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayDVDMovieOnArrival" Name="InvokeProgID" Value="BeePlayer.DVDMovie" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayDVDMovieOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayDVDMovieOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
 
                             <!-- Audio CD Handler -->
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayCDAudioOnArrival" Name="VLCPlayCDAudioOnArrival" Value="" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayCDAudioOnArrival" Name="Action" Value="Play audio CD" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayCDAudioOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayCDAudioOnArrival" Name="InvokeProgID" Value="VLC.CDAudio" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayCDAudioOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayCDAudioOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayCDAudioOnArrival" Name="BeePlayerPlayCDAudioOnArrival" Value="" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayCDAudioOnArrival" Name="Action" Value="Play audio CD" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayCDAudioOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayCDAudioOnArrival" Name="InvokeProgID" Value="BeePlayer.CDAudio" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayCDAudioOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayCDAudioOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
 
                             <!-- VCD Handler -->
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayVideoCDMovieOnArrival" Name="VLCPlayVCDMovieOnArrival" Value="" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayVCDMovieOnArrival" Name="Action" Value="Play VCD movie" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayVCDMovieOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayVCDMovieOnArrival" Name="InvokeProgID" Value="VLC.VCDMovie" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayVCDMovieOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayVCDMovieOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayVideoCDMovieOnArrival" Name="BeePlayerPlayVCDMovieOnArrival" Value="" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayVCDMovieOnArrival" Name="Action" Value="Play VCD movie" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayVCDMovieOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayVCDMovieOnArrival" Name="InvokeProgID" Value="BeePlayer.VCDMovie" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayVCDMovieOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayVCDMovieOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
 
                             <!-- SVCD Handler -->
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlaySuperVideoCDMovieOnArrival" Name="VLCPlaySVCDMovieOnArrival" Value="" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlaySVCDMovieOnArrival" Name="Action" Value="Play SVCD movie" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlaySVCDMovieOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlaySVCDMovieOnArrival" Name="InvokeProgID" Value="VLC.SVCDMovie" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlaySVCDMovieOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlaySVCDMovieOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlaySuperVideoCDMovieOnArrival" Name="BeePlayerPlaySVCDMovieOnArrival" Value="" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlaySVCDMovieOnArrival" Name="Action" Value="Play SVCD movie" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlaySVCDMovieOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlaySVCDMovieOnArrival" Name="InvokeProgID" Value="BeePlayer.SVCDMovie" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlaySVCDMovieOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlaySVCDMovieOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
 
                             <!-- DVD Audio Handler -->
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayDVDAudioOnArrival" Name="VLCPlayDVDAudioOnArrival" Value="" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayDVDAudioOnArrival" Name="Action" Value="Play audio DVD" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayDVDAudioOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayDVDAudioOnArrival" Name="InvokeProgID" Value="VLC.OPENFolder" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayDVDAudioOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayDVDAudioOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayDVDAudioOnArrival" Name="BeePlayerPlayDVDAudioOnArrival" Value="" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayDVDAudioOnArrival" Name="Action" Value="Play audio DVD" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayDVDAudioOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayDVDAudioOnArrival" Name="InvokeProgID" Value="BeePlayer.OPENFolder" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayDVDAudioOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayDVDAudioOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
 
                             <!-- Generic video files Handler -->
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayVideoFilesOnArrival" Name="VLCPlayVideoFilesOnArrival" Value="" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayVideoFilesOnArrival" Name="Action" Value="Play video files" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayVideoFilesOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayVideoFilesOnArrival" Name="InvokeProgID" Value="VLC.OPENFolder" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayVideoFilesOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayVideoFilesOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayVideoFilesOnArrival" Name="BeePlayerPlayVideoFilesOnArrival" Value="" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayVideoFilesOnArrival" Name="Action" Value="Play video files" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayVideoFilesOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayVideoFilesOnArrival" Name="InvokeProgID" Value="BeePlayer.OPENFolder" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayVideoFilesOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayVideoFilesOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
 
                             <!-- Generic audio files Handler -->
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayMusicFilesOnArrival" Name="VLCPlayMusicFilesOnArrival" Value="" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayMusicFilesOnArrival" Name="Action" Value="Play audio files" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayMusicFilesOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayMusicFilesOnArrival" Name="InvokeProgID" Value="VLC.OPENFolder" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayMusicFilesOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
-                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\VLCPlayMusicFilesOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\PlayMusicFilesOnArrival" Name="BeePlayerPlayMusicFilesOnArrival" Value="" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayMusicFilesOnArrival" Name="Action" Value="Play audio files" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayMusicFilesOnArrival" Name="DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayMusicFilesOnArrival" Name="InvokeProgID" Value="BeePlayer.OPENFolder" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayMusicFilesOnArrival" Name="InvokeVerb" Value="Open" Type="string" />
+                            <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\BeePlayerPlayMusicFilesOnArrival" Name="Provider" Value="$(var.ProductName)" Type="string" />
 
 
-                            <RegistryValue Root="HKCR" Key="VLC.DVDMovie" Value="VLC DVD Movie" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.DVDMovie\shell" Value="Open" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.DVDMovie\shell\open\command" Value="&quot;[#vlc.exe]&quot; --started-from-file dvd:///%1" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.DVDMovie\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.DVDMovie" Value="BeePlayer DVD Movie" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.DVDMovie\shell" Value="Open" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.DVDMovie\shell\open\command" Value="&quot;[#vlc.exe]&quot; --started-from-file dvd:///%1" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.DVDMovie\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
 
-                            <RegistryValue Root="HKCR" Key="VLC.CDAudio" Value="VLC CD Audio" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.CDAudio\shell" Value="Open" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.CDAudio\shell\open\command" Value="&quot;[#vlc.exe]&quot; --started-from-file cdda:///%1" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.CDAudio\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.CDAudio" Value="BeePlayer CD Audio" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.CDAudio\shell" Value="Open" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.CDAudio\shell\open\command" Value="&quot;[#vlc.exe]&quot; --started-from-file cdda:///%1" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.CDAudio\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
 
-                            <RegistryValue Root="HKCR" Key="VLC.VCDMovie" Value="VLC VCD Movie" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.VCDMovie\shell" Value="Open" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.VCDMovie\shell\open\command" Value="&quot;[#vlc.exe]&quot; --started-from-file vcd:///%1" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.VCDMovie\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.VCDMovie" Value="BeePlayer VCD Movie" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.VCDMovie\shell" Value="Open" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.VCDMovie\shell\open\command" Value="&quot;[#vlc.exe]&quot; --started-from-file vcd:///%1" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.VCDMovie\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
 
-                            <RegistryValue Root="HKCR" Key="VLC.SVCDMovie" Value="VLC SVCD Movie" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.SVCDMovie\shell" Value="Open" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.SVCDMovie\shell\open\command" Value="&quot;[#vlc.exe]&quot; --started-from-file vcd:///%1" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.SVCDMovie\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.SVCDMovie" Value="BeePlayer SVCD Movie" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.SVCDMovie\shell" Value="Open" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.SVCDMovie\shell\open\command" Value="&quot;[#vlc.exe]&quot; --started-from-file vcd:///%1" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.SVCDMovie\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
 
-                            <RegistryValue Root="HKCR" Key="VLC.OPENFolder" Value="VLC Play Content" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.OPENFolder\shell" Value="Open" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.OPENFolder\shell\open\command" Value="&quot;[#vlc.exe]&quot; %1" Type="string" />
-                            <RegistryValue Root="HKCR" Key="VLC.OPENFolder\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.OPENFolder" Value="BeePlayer Play Content" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.OPENFolder\shell" Value="Open" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.OPENFolder\shell\open\command" Value="&quot;[#vlc.exe]&quot; %1" Type="string" />
+                            <RegistryValue Root="HKCR" Key="BeePlayer.OPENFolder\DefaultIcon" Value="[#vlc.exe],0" Type="string" />
                         </Component>
                     </Directory>
                 </Directory>
@@ -275,7 +275,7 @@
                 <!--<Shortcut Id="SkinShortcut" Name="$(var.ProductName) skinned" Target="[APPLICATIONFOLDER]vlc.exe" Arguments="-Iskins" />-->
                 <Shortcut Id="VLCCleanShortcut" Name="Reset $(var.ProductName) preferences and cache files" Target="[APPLICATIONFOLDER]vlc.exe" Arguments="--reset-config --reset-plugins-cache vlc://quit" />
                 <Shortcut Id="NEWSShortcut" Name="Release Notes" Target="[APPLICATIONFOLDER]NEWS.txt" />
-                <util:InternetShortcut Id="WebsiteShortcut" Name="VideoLAN website" Target="https://www.videolan.org/"/>
+                <util:InternetShortcut Id="WebsiteShortcut" Name="BeePlayer Website" Target="https://www.videolan.org/"/>
                 <util:InternetShortcut Id="DocumentationShortcut" Name="Documentation" Target="https://www.videolan.org/doc/"/>
                 <!-- RegistryValue which serves as KeyPath -->
                 <RegistryValue Root="HKCU"
@@ -360,7 +360,7 @@
                       Impersonate   = "yes"
                       Return        = "asyncNoWait" />
         <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT"
-          Value="Launch VLC media player when setup exits." />
+          Value="Launch BeePlayer when setup exits." />
         <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
 
         <UI>

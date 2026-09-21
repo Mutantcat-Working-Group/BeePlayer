@@ -63,7 +63,7 @@ libvlc_dep = declare_dependency(
 pkg = import('pkgconfig')
 pkg.generate(libvlc,
     name: 'libvlc', # name of the .pc file in addition to Name: variable / 'LibVLC control API',
-    description: 'VLC media player external control library',
+    description: 'BeePlayer external control library',
     version: meson.project_version(),
     install_dir: vlccore_lib_path / 'pkgconfig')
 

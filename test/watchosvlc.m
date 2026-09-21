@@ -1,5 +1,5 @@
 /*****************************************************************************
- * iosvlc.m: watchOS specific development main executable for VLC media player
+ * iosvlc.m: watchOS specific development main executable for BeePlayer
  *****************************************************************************
  * Copyright (C) 2020, 2024 Videolabs
  *

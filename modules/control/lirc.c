@@ -207,7 +207,7 @@ static void Process( intf_thread_t *p_intf )
             {
                 msg_Err( p_intf, "this doesn't appear to be a valid keycombo "
                                  "lirc sent us. Please look at the "
-                                 "doc/lirc/example.lirc file in VLC" );
+                                 "doc/lirc/example.lirc file in BeePlayer" );
                 break;
             }
         }

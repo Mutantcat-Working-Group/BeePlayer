@@ -1,6 +1,6 @@
 /**
  * @file registry.h
- * @brief Wayland client register common helpers for VLC media player
+ * @brief Wayland client register common helpers for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2019 Rémi Denis-Courmont

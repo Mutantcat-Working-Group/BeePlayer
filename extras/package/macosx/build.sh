@@ -130,7 +130,7 @@ fi
 
 ACTUAL_HOST_ARCH=`get_actual_arch $HOST_ARCH`
 
-info "Building VLC for macOS, architecture ${HOST_ARCH} (aka: ${ACTUAL_HOST_ARCH}) on a ${BUILD_ARCH} device"
+info "Building BeePlayer for macOS, architecture ${HOST_ARCH} (aka: ${ACTUAL_HOST_ARCH}) on a ${BUILD_ARCH} device"
 
 BUILD_TRIPLET=$(vlcGetBuildTriplet)
 HOST_TRIPLET=$(vlcGetHostTriplet)
@@ -281,40 +281,40 @@ fi
 info "Running make -j$JOBS"
 make -j$JOBS
 
-info "Preparing VLC.app"
-make VLC.app
+info "Preparing BeePlayer.app"
+make BeePlayer.app
 
 if [ "$PACKAGETYPE" = "u" ]; then
-    info "Copying app with debug symbols into VLC-debug.app and stripping"
-    rm -rf VLC-debug.app
-    cp -Rp VLC.app VLC-debug.app
+    info "Copying app with debug symbols into BeePlayer-debug.app and stripping"
+    rm -rf BeePlayer-debug.app
+    cp -Rp BeePlayer.app BeePlayer-debug.app
 
     # Workaround for breakpad symbol parsing:
     # Symbols must be uploaded for libvlc(core).dylib, not libvlc(core).x.dylib
-    (cd VLC-debug.app/Contents/MacOS/lib/ && rm libvlccore.dylib && mv libvlccore.*.dylib libvlccore.dylib)
-    (cd VLC-debug.app/Contents/MacOS/lib/ && rm libvlc.dylib && mv libvlc.*.dylib libvlc.dylib)
+    (cd BeePlayer-debug.app/Contents/MacOS/lib/ && rm libvlccore.dylib && mv libvlccore.*.dylib libvlccore.dylib)
+    (cd BeePlayer-debug.app/Contents/MacOS/lib/ && rm libvlc.dylib && mv libvlc.*.dylib libvlc.dylib)
 
-    find VLC.app/ -name "*.dylib" -exec strip -x {} \;
-    find VLC.app/ -type f -name "VLC" -exec strip -x {} \;
-    find VLC.app/ -type f -name "Sparkle" -exec strip -x {} \;
-    find VLC.app/ -type f -name "Breakpad" -exec strip -x {} \;
+    find BeePlayer.app/ -name "*.dylib" -exec strip -x {} \;
+    find BeePlayer.app/ -type f -name "BeePlayer" -exec strip -x {} \;
+    find BeePlayer.app/ -type f -name "Sparkle" -exec strip -x {} \;
+    find BeePlayer.app/ -type f -name "Breakpad" -exec strip -x {} \;
 
     if [ "$BUILD_TRIPLET" = "$HOST_TRIPLET" ]; then
-        bin/vlc-cache-gen VLC.app/Contents/Frameworks/plugins
+        bin/vlc-cache-gen BeePlayer.app/Contents/Frameworks/plugins
     fi
 
-    info "Building VLC release archive"
+    info "Building BeePlayer release archive"
     make package-macosx-release
     make package-macosx-sdk
 
-    shasum -a 512 vlc-*-release.zip
+    shasum -a 512 BeePlayer-*-release.zip
     shasum -a 512 vlc-macos-sdk-*.tar.gz
 
 elif [ "$PACKAGETYPE" = "z" ]; then
-    info "Packaging VLC zip archive"
+    info "Packaging BeePlayer zip archive"
     make package-macosx-zip
 elif [ "$PACKAGETYPE" = "n" -o "$PACKAGE" = "yes" ]; then
-    info "Building VLC dmg package"
+    info "Building BeePlayer dmg package"
     make package-macosx
     make package-macosx-sdk
 fi

@@ -1,6 +1,6 @@
 /**
  * @file win_disc.c
- * @brief List of disc drives for VLC media player for Windows
+ * @brief List of disc drives for BeePlayer for Windows
  */
 /*****************************************************************************
  * Copyright © 2010 Rémi Denis-Courmont

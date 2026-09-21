@@ -1,6 +1,6 @@
 /**
  * @file wayland.c
- * @brief Wayland screenshooter extension module for VLC media player
+ * @brief Wayland screenshooter extension module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2014 Rémi Denis-Courmont

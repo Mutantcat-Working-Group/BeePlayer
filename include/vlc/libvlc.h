@@ -24,7 +24,7 @@
 
 /**
  * \defgroup libvlc LibVLC
- * LibVLC is the external programming interface of the VLC media player.
+ * LibVLC is the external programming interface of the BeePlayer.
  * It is used to embed VLC into other applications or frameworks.
  * @{
  * \file
@@ -151,7 +151,7 @@ const char *libvlc_printerr (const char *fmt, ...);
  *
  * \version
  * Arguments are meant to be passed from the command line to LibVLC, just like
- * VLC media player does. The list of valid arguments depends on the LibVLC
+ * BeePlayer does. The list of valid arguments depends on the LibVLC
  * version, the operating system and platform, and set of available LibVLC
  * plugins. Invalid or unsupported arguments will cause the function to fail
  * (i.e. return NULL). Also, some arguments may alter the behaviour or

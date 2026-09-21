@@ -11,13 +11,13 @@ BEGIN
   BEGIN
     BLOCK "040904E4"
     BEGIN
-      VALUE "CompanyName", "VideoLAN"
-      VALUE "ProductName", "VLC media player"
+      VALUE "CompanyName", "Mutantcat"
+      VALUE "ProductName", "BeePlayer"
       VALUE "ProductVersion", VERSION_NUMBER_STR
       VALUE "FileVersion", "@VERSION@"
-      VALUE "FileDescription", "LibVLC plugin"
-      VALUE "LegalCopyright", "Copyright \251 @COPYRIGHT_YEARS@ VideoLAN and VLC Authors"
-      VALUE "LegalTrademarks", "VLC media player, VideoLAN and x264 are registered trademarks from VideoLAN"
+      VALUE "FileDescription", "BeePlayer plugin"
+      VALUE "LegalCopyright", "Copyright \251 @COPYRIGHT_YEARS@ Mutantcat and BeePlayer Authors"
+      VALUE "LegalTrademarks", "BeePlayer and Mutantcat are trademarks of Mutantcat Working Group"
     END
   END
   BLOCK "VarFileInfo"

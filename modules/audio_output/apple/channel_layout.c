@@ -120,7 +120,7 @@ channel_layout_MapFromVLC(audio_output_t *p_aout, const audio_sample_format_t *f
         chan_idx++;
     }
 
-    msg_Dbg(p_aout, "VLC keeping the same input layout");
+    msg_Dbg(p_aout, "BeePlayer keeping the same input layout");
 
     return VLC_SUCCESS;
 }

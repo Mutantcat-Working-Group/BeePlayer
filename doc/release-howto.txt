@@ -102,5 +102,5 @@ Release HOWTO
     And to add git diff --stat PREVIOUS_VERSION..VERSION if it's relevant.
     You can play a bit with git to show the piece of information that may be
     interesting.
-  - Add a sticky thread in the "General VLC media player discussion" forum
+  - Add a sticky thread in the "General BeePlayer discussion" forum
 

@@ -1,5 +1,5 @@
 --[[
-VLSub Extension for VLC media player 1.1 and 2.0
+VLSub Extension for BeePlayer 1.1 and 2.0
 Copyright 2013 Guillaume Le Maout
 
 Authors:  Guillaume Le Maout
@@ -122,14 +122,14 @@ local options = {
       Select one subtitle in the list and click on 'Download'.<br>
       It will be put in the same directory that your video, with
       the same name (different extension)
-      so VLC will load them automatically the next time you'll
+      so BeePlayer will load them automatically the next time you'll
       start the video.<br>
       <br>
       <b>/!\\ Beware :</b> Existing subtitles are overwritten
       without asking confirmation, so put them elsewhere if
       they're important.<br>
       <br>
-      Find more VLC extensions at
+      Find more BeePlayer extensions at
       <a href='https://addons.videolan.org'>addons.videolan.org</a>.
       ]],
     int_no_support_mess = [[
@@ -354,7 +354,7 @@ local dlg = nil
 local input_table = {} -- General widget id reference
 local select_conf = {} -- Drop down widget / option table association
 
-            --[[ VLC extension stuff ]]--
+            --[[ BeePlayer extension stuff ]]--
 
 function descriptor()
   return {
@@ -372,7 +372,7 @@ function activate()
   vlc.msg.dbg("[VLsub] Welcome")
 
   if not check_config() then
-        vlc.msg.err("[VLsub] Unsupported VLC version")
+        vlc.msg.err("[VLsub] Unsupported BeePlayer version")
         return false
   end
 

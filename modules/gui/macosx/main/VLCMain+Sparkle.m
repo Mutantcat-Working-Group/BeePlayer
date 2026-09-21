@@ -60,9 +60,9 @@ NSString *const kARM64UpdateURLString = @"https://update.videolan.org/vlc/sparkl
 {
     if ([self.playQueueController.playerController activeVideoPlayback]) {
         if (error != NULL) {
-            *error = [NSError errorWithDomain:@"org.videolan.vlc.Sparkle"
+            *error = [NSError errorWithDomain:@"org.mutantcat.beeplayer.Sparkle"
                                           code:1
-                                      userInfo:@{NSLocalizedDescriptionKey: _NS("VLC is currently playing video.")}];
+                                      userInfo:@{NSLocalizedDescriptionKey: _NS("BeePlayer is currently playing video.")}];
         }
         return NO;
     }
@@ -76,7 +76,7 @@ NSString *const kARM64UpdateURLString = @"https://update.videolan.org/vlc/sparkl
 #ifdef __x86_64__
     if (OSX_BIGSUR_AND_HIGHER) {
         if ([self processIsTranslated] > 0) {
-            msg_Dbg(getIntf(), "Process is translated. On update, VLC will install the native ARM-64 binary.");
+        msg_Dbg(getIntf(), "Process is translated. On update, BeePlayer will install the native ARM-64 binary.");
             return kARM64UpdateURLString;
         }
     }

@@ -1,6 +1,6 @@
 /**
  * @file x11.c
- * @brief X C Bindings video output module for VLC media player
+ * @brief X C Bindings video output module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2009 Rémi Denis-Courmont

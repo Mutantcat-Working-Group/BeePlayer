@@ -1,6 +1,6 @@
 /**
  * @file pulse.c
- * @brief List of PulseAudio sources for VLC media player
+ * @brief List of PulseAudio sources for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2011 Rémi Denis-Courmont

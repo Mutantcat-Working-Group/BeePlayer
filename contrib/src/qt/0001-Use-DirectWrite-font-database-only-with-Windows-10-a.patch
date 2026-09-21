@@ -5,7 +5,7 @@ Subject: [PATCH] Use DirectWrite font database only with Windows 10 and above
 
 Functionalities used by Qt are not provided with Windows
 versions that are not officially supported by Qt (Windows
-7, Windows 8) but supported by VLC media player.
+7, Windows 8) but supported by BeePlayer.
 
 For example, IDWriteFontFace3 is only reportedly available
 starting with Windows 10. This change is necessary starting

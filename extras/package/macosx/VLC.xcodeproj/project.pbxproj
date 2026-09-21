@@ -2696,7 +2696,7 @@
 					"-framework",
 					Sparkle,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.videolan.vlc;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mutantcat.beeplayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
@@ -2737,7 +2737,7 @@
 					"-framework",
 					Sparkle,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.videolan.vlc;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mutantcat.beeplayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
@@ -2778,7 +2778,7 @@
 					"-framework",
 					Sparkle,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.videolan.vlc;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mutantcat.beeplayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
@@ -2818,7 +2818,7 @@
 					"-framework",
 					Sparkle,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.videolan.vlc;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mutantcat.beeplayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -2857,7 +2857,7 @@
 					"-framework",
 					Sparkle,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.videolan.vlc;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mutantcat.beeplayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -2896,7 +2896,7 @@
 					"-framework",
 					Sparkle,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.videolan.vlc;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mutantcat.beeplayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};

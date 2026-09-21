@@ -20,9 +20,9 @@ macos-install:
 	DESTDIR="$(macos_destdir)" $(MAKE) install
 	touch "$(macos_destdir)"
 
-# VLC.app for packaging and giving it to your friends
+# BeePlayer.app for packaging and giving it to your friends
 # use package-macosx to get a nice dmg
-VLC.app: macos-install
+BeePlayer.app: macos-install
 	rm -Rf $@
 	## Copy Contents
 	cp -R "$(macos_destdir)$(datadir)/macosx/" $@
@@ -66,7 +66,7 @@ if HAVE_NLS
 	## Copy translations
 	-cp -a "$(macos_destdir)$(datadir)/locale" $@/Contents/Resources/share/
 endif
-	printf "APPLVLC#" >| $@/Contents/PkgInfo
+	printf "APPLBEE#" >| $@/Contents/PkgInfo
 	## Copy libs
 	cp -a "$(macos_destdir)$(libdir)"/libvlc*.dylib $@/Contents/Frameworks/
 	## Copy plugins
@@ -75,8 +75,8 @@ endif
 	## Copy libbluray jar
 	-cp -a "$(CONTRIB_DIR)"/share/java/libbluray*.jar $@/Contents/Frameworks/plugins/
 	## Install binary
-	cp "$(macos_destdir)$(prefix)/bin/vlc" $@/Contents/MacOS/VLC
-	install_name_tool -rpath "$(libdir)" "@executable_path/../Frameworks/" $@/Contents/MacOS/VLC
+	cp "$(macos_destdir)$(prefix)/bin/vlc" $@/Contents/MacOS/BeePlayer
+	install_name_tool -rpath "$(libdir)" "@executable_path/../Frameworks/" $@/Contents/MacOS/BeePlayer
 	cp "$(macos_destdir)$(pkglibexecdir)/vlc-preparser" $@/Contents/MacOS/
 	install_name_tool -rpath "$(libdir)" "@executable_path/../Frameworks/" $@/Contents/MacOS/vlc-preparser
 	## Generate plugin cache
@@ -95,46 +95,46 @@ package-macosx-sdk: macos-install
 	tar -cf - --exclude "share/macosx" -C "$(macos_destdir)" . \
 		| gzip -c > "$(top_builddir)/vlc-macos-sdk-$(VERSION).tar.gz"
 
-package-macosx: VLC.app
-	rm -f "$(top_builddir)/vlc-$(VERSION).dmg"
+package-macosx: BeePlayer.app
+	rm -f "$(top_builddir)/BeePlayer-$(VERSION).dmg"
 if HAVE_DMGBUILD
 	@echo "Packaging fancy DMG using dmgbuild"
 	cd "$(top_srcdir)/extras/package/macosx/dmg" && dmgbuild -s "dmg_settings.py" \
-		-D app="$(abs_top_builddir)/VLC.app" "VLC Media Player" "$(abs_top_builddir)/vlc-$(VERSION).dmg"
+		-D app="$(abs_top_builddir)/BeePlayer.app" "BeePlayer" "$(abs_top_builddir)/BeePlayer-$(VERSION).dmg"
 else !HAVE_DMGBUILD
 	@echo "Packaging non-fancy DMG"
 	## Create directory for DMG contents
-	mkdir -p "$(top_builddir)/vlc-$(VERSION)"
+	mkdir -p "$(top_builddir)/BeePlayer-$(VERSION)"
 	## Copy contents
-	cp -Rp "$(top_builddir)/VLC.app" "$(top_builddir)/vlc-$(VERSION)/VLC.app"
+	cp -Rp "$(top_builddir)/BeePlayer.app" "$(top_builddir)/BeePlayer-$(VERSION)/BeePlayer.app"
 	## Symlink to Applications so users can easily drag-and-drop the App to it
-	$(LN_S) -f /Applications "$(top_builddir)/vlc-$(VERSION)/"
+	$(LN_S) -f /Applications "$(top_builddir)/BeePlayer-$(VERSION)/"
 	## Create DMG
-	hdiutil create -srcfolder "$(top_builddir)/vlc-$(VERSION)" -volname "VLC Media Player" \
-		-format UDBZ -fs HFS+ -o "$(top_builddir)/vlc-$(VERSION).dmg"
+	hdiutil create -srcfolder "$(top_builddir)/BeePlayer-$(VERSION)" -volname "BeePlayer" \
+		-format UDBZ -fs HFS+ -o "$(top_builddir)/BeePlayer-$(VERSION).dmg"
 	## Cleanup
-	rm -rf "$(top_builddir)/vlc-$(VERSION)"
+	rm -rf "$(top_builddir)/BeePlayer-$(VERSION)"
 endif
 
-package-macosx-zip: VLC.app
-	rm -f "$(top_builddir)/vlc-$(VERSION).zip"
-	mkdir -p $(top_builddir)/vlc-$(VERSION)/Goodies/
-	cp -Rp $(top_builddir)/VLC.app $(top_builddir)/vlc-$(VERSION)/VLC.app
-	cd $(srcdir); cp -R AUTHORS COPYING README.md THANKS NEWS $(abs_top_builddir)/vlc-$(VERSION)/Goodies/
-	zip -r -y -9 $(top_builddir)/vlc-$(VERSION).zip $(top_builddir)/vlc-$(VERSION)
-	rm -rf "$(top_builddir)/vlc-$(VERSION)"
+package-macosx-zip: BeePlayer.app
+	rm -f "$(top_builddir)/BeePlayer-$(VERSION).zip"
+	mkdir -p $(top_builddir)/BeePlayer-$(VERSION)/Goodies/
+	cp -Rp $(top_builddir)/BeePlayer.app $(top_builddir)/BeePlayer-$(VERSION)/BeePlayer.app
+	cd $(srcdir); cp -R AUTHORS COPYING README.md THANKS NEWS $(abs_top_builddir)/BeePlayer-$(VERSION)/Goodies/
+	zip -r -y -9 $(top_builddir)/BeePlayer-$(VERSION).zip $(top_builddir)/BeePlayer-$(VERSION)
+	rm -rf "$(top_builddir)/BeePlayer-$(VERSION)"
 
 package-macosx-release:
-	rm -f "$(top_builddir)/vlc-$(VERSION)-release.zip"
-	mkdir -p $(top_builddir)/vlc-$(VERSION)-release
-	cp -Rp $(top_builddir)/VLC.app $(top_builddir)/vlc-$(VERSION)-release/
-	cp $(srcdir)/extras/package/macosx/dmg/* $(top_builddir)/vlc-$(VERSION)-release/
-	cp "$(srcdir)/extras/package/macosx/codesign.sh" $(top_builddir)/vlc-$(VERSION)-release/
-	cp "$(srcdir)/extras/package/macosx/vlc-hardening.entitlements" $(top_builddir)/vlc-$(VERSION)-release/
-	cp "$(pkglibexecdir)/vlc-cache-gen" $(top_builddir)/vlc-$(VERSION)-release/
-	install_name_tool -add_rpath "@executable_path/VLC.app/Contents/Frameworks" $(top_builddir)/vlc-$(VERSION)-release/vlc-cache-gen
-	zip -r -y -9 $(top_builddir)/vlc-$(VERSION)-release.zip $(top_builddir)/vlc-$(VERSION)-release
-	rm -rf "$(top_builddir)/vlc-$(VERSION)-release"
+	rm -f "$(top_builddir)/BeePlayer-$(VERSION)-release.zip"
+	mkdir -p $(top_builddir)/BeePlayer-$(VERSION)-release
+	cp -Rp $(top_builddir)/BeePlayer.app $(top_builddir)/BeePlayer-$(VERSION)-release/
+	cp $(srcdir)/extras/package/macosx/dmg/* $(top_builddir)/BeePlayer-$(VERSION)-release/
+	cp "$(srcdir)/extras/package/macosx/codesign.sh" $(top_builddir)/BeePlayer-$(VERSION)-release/
+	cp "$(srcdir)/extras/package/macosx/vlc-hardening.entitlements" $(top_builddir)/BeePlayer-$(VERSION)-release/
+	cp "$(pkglibexecdir)/vlc-cache-gen" $(top_builddir)/BeePlayer-$(VERSION)-release/
+	install_name_tool -add_rpath "@executable_path/BeePlayer.app/Contents/Frameworks" $(top_builddir)/BeePlayer-$(VERSION)-release/vlc-cache-gen
+	zip -r -y -9 $(top_builddir)/BeePlayer-$(VERSION)-release.zip $(top_builddir)/BeePlayer-$(VERSION)-release
+	rm -rf "$(top_builddir)/BeePlayer-$(VERSION)-release"
 
 package-translations:
 	mkdir -p "$(srcdir)/vlc-translations-$(VERSION)"

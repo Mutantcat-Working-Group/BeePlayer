@@ -1,6 +1,6 @@
 /**
  * @file gme.c
- * @brief Game Music Emu demux module for VLC media player
+ * @brief Game Music Emu demux module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2010 Rémi Denis-Courmont

@@ -71,7 +71,7 @@ static void system_ConfigureDbus(libvlc_int_t *vlc, int argc,
         free(name);
         if (singleton)
         {
-            msg_Dbg(vlc, "no running VLC instance - continuing normally...");
+            msg_Dbg(vlc, "no running BeePlayer instance - continuing normally...");
             return; /* This is the single instance */
         }
     }
@@ -90,7 +90,7 @@ static void system_ConfigureDbus(libvlc_int_t *vlc, int argc,
         return;
     }
 
-    msg_Warn(vlc, "running VLC instance - exiting...");
+    msg_Warn(vlc, "running BeePlayer instance - exiting...");
 
     const dbus_bool_t play = !var_InheritBool(vlc, "playlist-enqueue");
 

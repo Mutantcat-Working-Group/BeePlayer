@@ -1,6 +1,6 @@
 /**
  * @file render.c
- * @brief X C Bindings video output module for VLC media player
+ * @brief X C Bindings video output module for BeePlayer
  */
 /*****************************************************************************
  * Copyright © 2009-2018 Rémi Denis-Courmont

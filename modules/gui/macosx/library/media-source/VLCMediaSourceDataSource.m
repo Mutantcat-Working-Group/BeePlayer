@@ -87,7 +87,7 @@ static NSValue * _Nullable inputItemIdentifier(VLCInputItem * _Nullable const in
         self.childCountsByInputItemIdentifier = NSMutableDictionary.dictionary;
         dispatch_queue_attr_t const childCountQueueAttributes =
             dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, 0);
-        self.childCountQueue = dispatch_queue_create("org.videolan.vlc.media-source-child-count",
+        self.childCountQueue = dispatch_queue_create("org.mutantcat.beeplayer.media-source-child-count",
                                                      childCountQueueAttributes);
         NSNotificationCenter * const notificationCenter = NSNotificationCenter.defaultCenter;
         [notificationCenter addObserver:self
