@@ -492,9 +492,12 @@ fi
 
 # The GCC-built prebuilt contribs carry -latomic in their pkg-config
 # metadata. LLVM-MinGW emits x86_64 atomics inline and has no libatomic.
+# Some contribs (e.g. x265) also reference GCC-only runtime libraries
+# (-lgcc, -lgcc_s, -lgcc_eh) that llvm-mingw's lld does not ship, so the
+# corresponding modules fail at link time. Strip them from the .pc files.
 if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
     find "../$CONTRIB_PREFIX/lib/pkgconfig" -type f -name '*.pc' \
-        -exec sed -i 's/[[:space:]]-latomic//g' {} +
+        -exec sed -i -E 's/[[:space:]]-(lgcc|lgcc_s|lgcc_eh|latomic)//g' {} +
 fi
 cd ../..
 
@@ -582,6 +585,12 @@ if [ -n "$BUILD_MESON" ]; then
     fi
 
     BUILD_PATH="$( pwd -P )"
+
+    # Allow injecting extra Meson options from the environment (e.g. to work
+    # around ABI mismatches in prebuilt contribs).
+    if [ -n "${VLC_MCONFIGFLAGS:-}" ]; then
+        MCONFIGFLAGS="$MCONFIGFLAGS $VLC_MCONFIGFLAGS"
+    fi
 
     # we don't want to install in <destdir>/usr/local, just <destdir>
     MCONFIGFLAGS="$MCONFIGFLAGS --prefix=/"
