@@ -139,6 +139,7 @@ jobs:
           python3 -m venv "${RUNNER_TEMP}/dmgbuild-venv"
           "${RUNNER_TEMP}/dmgbuild-venv/bin/pip" install --upgrade dmgbuild
           export PATH="${RUNNER_TEMP}/dmgbuild-venv/bin:$PATH"
+          export VLC_PATH="$PATH"
           extras/package/macosx/build.sh -i n -a x86_64 -j "$(getconf NPROCESSORS_ONLN)"
 
       - name: Rename and verify DMG
@@ -191,6 +192,7 @@ jobs:
           python3 -m venv "${RUNNER_TEMP}/dmgbuild-venv"
           "${RUNNER_TEMP}/dmgbuild-venv/bin/pip" install --upgrade dmgbuild
           export PATH="${RUNNER_TEMP}/dmgbuild-venv/bin:$PATH"
+          export VLC_PATH="$PATH"
           extras/package/macosx/build.sh -i n -a aarch64 -j "$(getconf NPROCESSORS_ONLN)"
 
       - name: Rename and verify DMG
