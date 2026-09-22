@@ -77,7 +77,7 @@ jobs:
           set -euxo pipefail
           CONTRIB_SHA="${{ env.VLC_CONTRIB_SHA_WIN64 }}"
           PREBUILT_URL="https://artifacts.videolan.org/vlc/win64/vlc-contrib-x86_64-w64-mingw32-${CONTRIB_SHA}.tar.zst"
-         docker run --rm \
+          docker run --rm \
            --user 0 \
            --workdir "${{ github.workspace }}" \
            -v "${{ github.workspace }}:${{ github.workspace }}" \
