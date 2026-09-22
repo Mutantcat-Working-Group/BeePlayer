@@ -52,7 +52,7 @@ jobs:
           case "$VERSION" in
             *-*)
               echo "Version '${VERSION}' must not contain a '-N' suffix (e.g. -1, -2)." >&2
-              echo "Use the next date instead, e.g. 1.0.20260923, 1.0.20260924." >&2
+              echo "Use the next date instead, e.g. 1.0.20260924, 1.0.20260925." >&2
               exit 1
               ;;
           esac
@@ -78,11 +78,12 @@ jobs:
           CONTRIB_SHA="${{ env.VLC_CONTRIB_SHA_WIN64 }}"
           PREBUILT_URL="https://artifacts.videolan.org/vlc/win64/vlc-contrib-x86_64-w64-mingw32-${CONTRIB_SHA}.tar.zst"
           docker run --rm \
-            --workdir "${{ github.workspace }}" \
-            -v "${{ github.workspace }}:${{ github.workspace }}" \
-            -e VLC_PREBUILT_CONTRIBS_URL="${PREBUILT_URL}" \
-            registry.videolan.org/vlc-debian-win64-posix:20260611225331 \
-            /bin/sh -c "extras/package/win32/build.sh -a x86_64 -r -p"
+           --user 0 \
+           --workdir "${{ github.workspace }}" \
+           -v "${{ github.workspace }}:${{ github.workspace }}" \
+           -e VLC_PREBUILT_CONTRIBS_URL="${PREBUILT_URL}" \
+           registry.videolan.org/vlc-debian-llvm-msvcrt:20260611225331 \
+           /bin/sh -c "git config --global --add safe.directory \"${{ github.workspace }}\" && extras/package/win32/build.sh -a x86_64 -r -p -m"
 
       - name: Verify installer artifact
         run: |
@@ -223,6 +224,7 @@ jobs:
 
               # Official VLC debian CI also builds directly against the
               # system libraries provided by this image.
+              git config --global --add safe.directory "${{ github.workspace }}"
               ./bootstrap
               ./configure --prefix=/usr
               make -j"${NCPU}"
@@ -241,8 +243,8 @@ jobs:
               export QMAKE="$(command -v qmake6 || command -v qmake)"
               test -x "${QMAKE}"
 
-              # The installed vlc binary has no RPATH, so linuxdeploy's ldd
-              # pass must be able to resolve libraries inside the AppDir.
+              # The installed vlc binary has no RPATH, so the linuxdeploy
+              # ldd pass must resolve libraries inside the AppDir.
               export LD_LIBRARY_PATH="/tmp/appdir/usr/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
               /linuxdeploy/linuxdeploy \

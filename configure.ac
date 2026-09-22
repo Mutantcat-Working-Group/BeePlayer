@@ -2,15 +2,15 @@ dnl Autoconf settings for vlc
 
 AC_COPYRIGHT([Copyright 1999-2026 VLC authors and VideoLAN])
 
-AC_INIT([BeePlayer], [1.0.20260924])
+AC_INIT([BeePlayer], [1.0.20260925])
 VERSION_MAJOR=1
 VERSION_MINOR=0
-VERSION_REVISION=20260924
+VERSION_REVISION=20260925
 VERSION_EXTRA=0
 VERSION_DEV=""
 
 # Windows VERSIONINFO stores each numeric field in 16 bits. Date-based
-# revisions such as 20260924 are split into year and month/day for the
+# revisions such as 20260925 are split into year and month/day for the
 # binary resource while the user-visible version remains unchanged.
 AS_IF([test "$VERSION_REVISION" -gt 65535], [
     VERSION_RESOURCE_HIGH=$((VERSION_REVISION / 10000))
