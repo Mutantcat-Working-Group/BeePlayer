@@ -13,8 +13,7 @@
 
 ### 2. Deployment
 1. Install the matching distribution package on a supported platform (Windows, macOS, Linux, Android, iOS).
-2. Or build from source; see the [INSTALL](INSTALL) file for build instructions.
-3. Developers can integrate libVLC into their own applications to gain playback, transcoding and streaming capabilities.
+2. Developers can integrate libVLC into their own applications to gain playback, transcoding and streaming capabilities.
 
 ### 3. Usage
 1. Open BeePlayer and use the "Media" menu to open files, discs, network streams or capture devices.
@@ -53,3 +52,7 @@
 - Contributions via Merge Request are welcome; please resolve CI and discussion issues before participating.
 - The community includes developers, packagers, documentation writers, designers and support staff.
 - Resources: [BeePlayer Support](https://www.videolan.org/support/), [Forum](https://forum.videolan.org/), [Wiki](https://wiki.videolan.org/), [Bug Tracker](https://code.videolan.org/videolan/vlc/-/issues).
+
+### 9. Build from Source
+
+Build steps, dependencies and configuration options for each platform are documented in the [INSTALL](INSTALL) file. When building from source, prepare the toolchain for the target platform as described there before running the build.

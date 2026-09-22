@@ -13,8 +13,7 @@
 
 ### 二、部署方式
 1. 在支持的平台上安装对应发行包（Windows、macOS、Linux、Android、iOS）。
-2. 也可以从源码自行编译，编译相关说明见 [INSTALL](INSTALL) 文件。
-3. 开发者在自己的应用中集成 libVLC，即可获得播放、转码和串流能力。
+2. 开发者在自己的应用中集成 libVLC，即可获得播放、转码和串流能力。
 
 ### 三、使用教程
 1. 打开 BeePlayer，通过“媒体”菜单打开文件、光盘、网络串流或采集设备。
@@ -53,3 +52,8 @@
 - 欢迎通过 Merge Request 贡献代码；参与前请先解决 CI 与讨论中的问题。
 - 社区成员包括开发者、打包者、文档编写者、设计师与支持人员。
 - 相关资源：[BeePlayer 支持](https://www.videolan.org/support/)、[论坛](https://forum.videolan.org/)、[Wiki](https://wiki.videolan.org/)、[Bug 跟踪](https://code.videolan.org/videolan/vlc/-/issues)。
+
+### 九、从源码构建
+
+- 各平台的编译步骤、依赖与配置项见 [INSTALL](INSTALL) 文件。
+- 需要自行编译时，请按该文件准备对应平台的工具链后再执行构建。
