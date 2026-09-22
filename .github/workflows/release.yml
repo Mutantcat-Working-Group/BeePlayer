@@ -78,12 +78,11 @@ jobs:
           CONTRIB_SHA="${{ env.VLC_CONTRIB_SHA_WIN64 }}"
           PREBUILT_URL="https://artifacts.videolan.org/vlc/win64/vlc-contrib-x86_64-w64-mingw32-${CONTRIB_SHA}.tar.zst"
           docker run --rm \
-           --user 0 \
-           --workdir "${{ github.workspace }}" \
-           -v "${{ github.workspace }}:${{ github.workspace }}" \
-           -e VLC_PREBUILT_CONTRIBS_URL="${PREBUILT_URL}" \
-           registry.videolan.org/vlc-debian-llvm-msvcrt:20260611225331 \
-           /bin/sh -c "git config --global --add safe.directory \"${{ github.workspace }}\" && extras/package/win32/build.sh -a x86_64 -r -p -m"
+            --workdir "${{ github.workspace }}" \
+            -v "${{ github.workspace }}:${{ github.workspace }}" \
+            -e VLC_PREBUILT_CONTRIBS_URL="${PREBUILT_URL}" \
+            registry.videolan.org/vlc-debian-win64-posix:20260611225331 \
+            /bin/sh -c "extras/package/win32/build.sh -a x86_64 -r -p"
 
       - name: Verify installer artifact
         run: |
@@ -218,18 +217,17 @@ jobs:
             /bin/sh -euxc '
               export NCPU="$(getconf _NPROCESSORS_ONLN)"
 
-             # linuxdeploy needs these tools on the build host.
-             apt-get update -qq
-             apt-get install -y --no-install-recommends patchelf desktop-file-utils
+              # linuxdeploy needs these tools on the build host.
+              apt-get update -qq
+              apt-get install -y --no-install-recommends patchelf desktop-file-utils
 
-             # Official VLC debian CI also builds directly against the
-             # system libraries provided by this image.
-             git config --global --add safe.directory "${{ github.workspace }}"
-             ./bootstrap
-             ./configure --prefix=/usr
-             make -j"${NCPU}"
+              # Official VLC debian CI also builds directly against the
+              # system libraries provided by this image.
+              ./bootstrap
+              ./configure --prefix=/usr
+              make -j"${NCPU}"
 
-              find /tmp/appdir -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+              rm -rf /tmp/appdir
               make install DESTDIR=/tmp/appdir
 
               DESKTOP_FILE="$(find /tmp/appdir/usr/share/applications -maxdepth 1 -name "vlc.desktop" -print -quit)"
@@ -281,6 +279,14 @@ jobs:
       - name: List release assets
         run: ls -lh release-assets
 
+      - name: Generate checksums
+        run: |
+          set -euo pipefail
+          cd release-assets
+          files=(*)
+          sha256sum "${files[@]}" > checksums.txt
+          md5sum "${files[@]}" > checksums-md5.txt
+          sha1sum "${files[@]}" > checksums-sha1.txt
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
