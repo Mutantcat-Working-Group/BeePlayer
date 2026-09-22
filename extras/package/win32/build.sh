@@ -583,6 +583,12 @@ if [ -n "$BUILD_MESON" ]; then
 
     BUILD_PATH="$( pwd -P )"
 
+    # Allow injecting extra Meson options from the environment (e.g. to work
+    # around ABI mismatches in prebuilt contribs).
+    if [ -n "${VLC_MCONFIGFLAGS:-}" ]; then
+        MCONFIGFLAGS="$MCONFIGFLAGS $VLC_MCONFIGFLAGS"
+    fi
+
     # we don't want to install in <destdir>/usr/local, just <destdir>
     MCONFIGFLAGS="$MCONFIGFLAGS --prefix=/"
 

@@ -66,6 +66,10 @@ jobs:
     timeout-minutes: 360
     env:
       VERSION: ${{ needs.version.outputs.version }}
+      # The prebuilt win64 contrib's libaribcaption.a is built against
+      # GCC's libstdc++, which ABI-mismatches llvm-mingw's lld. The module
+      # is a niche Japanese broadcast caption decoder; disable it.
+      VLC_MCONFIGFLAGS: '-Daribcaption=disabled'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -82,6 +86,7 @@ jobs:
            --workdir "${{ github.workspace }}" \
            -v "${{ github.workspace }}:${{ github.workspace }}" \
            -e VLC_PREBUILT_CONTRIBS_URL="${PREBUILT_URL}" \
+           -e VLC_MCONFIGFLAGS="${VLC_MCONFIGFLAGS}" \
            registry.videolan.org/vlc-debian-llvm-msvcrt:20260611225331 \
            /bin/sh -c "git config --global --add safe.directory \"${{ github.workspace }}\" && extras/package/win32/build.sh -a x86_64 -r -p -m"
 
