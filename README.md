@@ -1,3 +1,5 @@
+**简体中文** | [English](README.en.md)
+
 <div align=center>
 <img src="icon.png" style="width:100px;" width="100"/>
 <h2>BeePlayer</h2>
