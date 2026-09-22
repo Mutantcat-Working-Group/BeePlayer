@@ -88,3 +88,24 @@ process bin/ "*" text_only
 process lib/ "*.la"
 process lib/pkgconfig/ "*.pc" check
 process share/meson/cross/ "*.ini"
+
+# Prebuilt contribs can bake in the builder SDK sysroot paths (e.g.
+# -isysroot /Applications/Xcode.app/.../MacOSX12.3.sdk), which do not exist on
+# the machine that consumes the archive and break libtool links (notably the
+# ncurses plugin, whose .la pulls the bad sysroot into every link that uses
+# it). Strip those tokens so the active Xcode SDK (set via the build
+# environment) is used instead.
+strip_sysroot() {
+    local dir="$1" mask="$2"
+    for file in $(find "$dir" -type f -name "$mask" 2>/dev/null); do
+        sed -i.orig \
+            -e 's,[[:space:]]-isysroot[[:space:]][^[:space:]]*,,g' \
+            -e 's,[[:space:]]-syslibroot[[:space:]][^[:space:]]*,,g' \
+            "$file" 2>/dev/null || true
+        rm -f "$file.orig"
+    done
+}
+strip_sysroot lib/ "*.la"
+strip_sysroot lib/pkgconfig/ "*.pc"
+strip_sysroot share/meson/cross/ "*.ini"
+strip_sysroot bin/ "*"
