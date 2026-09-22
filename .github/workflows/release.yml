@@ -82,7 +82,6 @@ jobs:
            --workdir "${{ github.workspace }}" \
            -v "${{ github.workspace }}:${{ github.workspace }}" \
            -e VLC_PREBUILT_CONTRIBS_URL="${PREBUILT_URL}" \
-           -e VLC_EXE_WRAPPER= \
            registry.videolan.org/vlc-debian-win64-posix:20260611225331 \
            /bin/sh -c "git config --global --add safe.directory \"${{ github.workspace }}\" && extras/package/win32/build.sh -a x86_64 -r -p -m"
 
