@@ -59,6 +59,6 @@ Build steps, dependencies and configuration options for each platform are docume
 
 ---
 
-## 致谢
+## Acknowledgments
 
-本项目是 [videolan/vlc](https://github.com/videolan/vlc) 的 Fork，感谢原仓库及其作者的优秀开源工作，本仓库在其基础上继续维护与改进。
+This repository is a fork of [videolan/vlc](https://github.com/videolan/vlc). Thanks to the VideoLAN team and all VLC contributors for their open-source work; this repository continues to build upon it.
