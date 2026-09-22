@@ -489,6 +489,13 @@ if [ -n "$PREBUILT_FAILED" ]; then
 else
     make -j$JOBS tools
 fi
+
+# The GCC-built prebuilt contribs carry -latomic in their pkg-config
+# metadata. LLVM-MinGW emits x86_64 atomics inline and has no libatomic.
+if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
+    find "../$CONTRIB_PREFIX/lib/pkgconfig" -type f -name '*.pc' \
+        -exec sed -i 's/[[:space:]]-latomic//g' {} +
+fi
 cd ../..
 
 # configuration matching configure.sh (goom is called goom2, theora is theoradec+theoraenc)
