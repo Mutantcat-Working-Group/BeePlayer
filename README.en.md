@@ -56,3 +56,9 @@
 ### 9. Build from Source
 
 Build steps, dependencies and configuration options for each platform are documented in the [INSTALL](INSTALL) file. When building from source, prepare the toolchain for the target platform as described there before running the build.
+
+---
+
+## 致谢
+
+本项目是 [videolan/vlc](https://github.com/videolan/vlc) 的 Fork，感谢原仓库及其作者的优秀开源工作，本仓库在其基础上继续维护与改进。
