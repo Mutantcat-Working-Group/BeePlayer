@@ -69,7 +69,7 @@ jobs:
       # The prebuilt win64 contrib's libaribcaption.a is built against
       # GCC's libstdc++, which ABI-mismatches llvm-mingw's lld. The module
       # is a niche Japanese broadcast caption decoder; disable it.
-      VLC_MCONFIGFLAGS: '-Daribcaption=disabled -Dvpl=disabled -Dsrt=disabled -Dasdcplib=disabled -Dmatroska=disabled -Dgme=disabled -Dsid=disabled'
+      VLC_MCONFIGFLAGS: '-Daribcaption=disabled -Dvpl=disabled -Dsrt=disabled -Dasdcplib=disabled -Dmatroska=disabled -Dgme=disabled -Dsid=disabled -Dspatialaudio=disabled'
     steps:
       - uses: actions/checkout@v4
         with:
