@@ -52,7 +52,7 @@ jobs:
           case "$VERSION" in
             *-*)
               echo "Version '${VERSION}' must not contain a '-N' suffix (e.g. -1, -2)." >&2
-              echo "Use the next date instead, e.g. 1.0.20260924, 1.0.20260925." >&2
+              echo "Use the next date instead, e.g. 1.0.20260925, 1.0.20260926." >&2
               exit 1
               ;;
           esac
@@ -229,7 +229,7 @@ jobs:
               ./configure --prefix=/usr
               make -j"${NCPU}"
 
-              rm -rf /tmp/appdir
+              find /tmp/appdir -mindepth 1 -maxdepth 1 -exec rm -rf {} +
               make install DESTDIR=/tmp/appdir
 
               DESKTOP_FILE="$(find /tmp/appdir/usr/share/applications -maxdepth 1 -name "vlc.desktop" -print -quit)"
