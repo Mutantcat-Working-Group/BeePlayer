@@ -1,52 +1,46 @@
-name: Windows Qt diagnostic
+name: Windows cross toolchain diagnostic
 
 on:
   workflow_dispatch:
 
 jobs:
-  inspect:
-    name: Inspect prebuilt Qt configuration
+  wine:
+    name: Check Wine execution
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - registry.videolan.org/vlc-debian-win64-posix:20260611225331
+          - registry.videolan.org/vlc-debian-llvm-msvcrt:20260611225331
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Inspect contrib Qt paths
-        env:
-          CONTRIB_URL: https://artifacts.videolan.org/vlc/win64/vlc-contrib-x86_64-w64-mingw32-3e5d7492a6294993419e997c8ac0ca8ae5746d94.tar.zst
+      - name: Compile and run a minimal Windows executable
         run: |
-          set -euxo pipefail
+          set -ux
           docker run --rm \
             --user 0 \
-            --workdir "${{ github.workspace }}" \
-            -v "${{ github.workspace }}:${{ github.workspace }}" \
-            -e REPO_DIR="${{ github.workspace }}" \
-            -e CONTRIB_URL \
-            registry.videolan.org/vlc-debian-win64-posix:20260611225331 \
-            /bin/sh -euxc '
-              curl -fsSL --retry 5 -o /tmp/contrib.tar.zst "$CONTRIB_URL"
-              rm -rf /tmp/contrib
-              mkdir -p /tmp/contrib
-              tar -xf /tmp/contrib.tar.zst -C /tmp/contrib
-
-              echo "===== target_qt.conf before change_prefix ====="
-              cat /tmp/contrib/x86_64-w64-mingw32/bin/target_qt.conf
-
-              cd /tmp/contrib/x86_64-w64-mingw32
-              "$REPO_DIR/contrib/src/change_prefix.sh"
-
-              echo "===== target_qt.conf after change_prefix ====="
-              cat bin/target_qt.conf
-              echo "===== host qmake query ====="
-              /opt/tools/bin/qmake6 -query
-              echo "===== host qmake query with target_qt.conf ====="
-              /opt/tools/bin/qmake6 -qtconf bin/target_qt.conf -query
-              echo "===== contrib qmake files ====="
-              ls -l bin/qmake bin/qmake6 2>/dev/null || true
-              echo "===== contrib qmake query ====="
-              ./bin/qmake6 -query 2>/dev/null || true
-              echo "===== mkspec files ====="
-              find . -path "*mkspecs*" -type f | head -100
+            -e WINEDEBUG=+warn \
+            "${{ matrix.image }}" \
+            /bin/sh -uxc '
+              echo "IMAGE_TOOLS"
+              command -v wine || true
+              command -v wine64 || true
+              wine --version || true
+              echo "COMPILER_ENV"
+              env | grep -E "^(CC|CXX|PATH|WINE)" | sort || true
+              CC="${CC:-x86_64-w64-mingw32-gcc}"
+              printf "int main(void) { return 42; }\n" > /tmp/check.c
+              "$CC" /tmp/check.c -o /tmp/check.exe
+              file /tmp/check.exe
+              set +e
+              wine /tmp/check.exe
+              status=$?
+              echo "wine_status=$status"
+              wine64 /tmp/check.exe
+              status64=$?
+              echo "wine64_status=$status64"
+              exit 0
             '
