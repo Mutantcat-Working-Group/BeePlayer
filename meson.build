@@ -1,5 +1,5 @@
 project('BeePlayer', ['c', 'cpp'],
-    version: '1.0.20260921',
+    version: '1.0.20260922',
     default_options: ['c_std=gnu17', 'cpp_std=c++17'],
     meson_version: '>=1.10.0')
 
