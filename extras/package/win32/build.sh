@@ -215,7 +215,7 @@ then
 fi
 HOST="$(cc -dumpmachine)"
 HOST_ARCH="${HOST%%-*}"
-if [ "$HOST_ARCH" = "$ARCH" ]; then
+if [ "${VLC_EXE_WRAPPER+set}" != "set" ] && [ "$HOST_ARCH" = "$ARCH" ]; then
     VLC_EXE_WRAPPER="wine"
 fi
 

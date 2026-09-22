@@ -82,8 +82,9 @@ jobs:
            --workdir "${{ github.workspace }}" \
            -v "${{ github.workspace }}:${{ github.workspace }}" \
            -e VLC_PREBUILT_CONTRIBS_URL="${PREBUILT_URL}" \
+           -e VLC_EXE_WRAPPER= \
            registry.videolan.org/vlc-debian-win64-posix:20260611225331 \
-           /bin/sh -c "git config --global --add safe.directory \"${{ github.workspace }}\" && extras/package/win32/build.sh -a x86_64 -r -p"
+           /bin/sh -c "git config --global --add safe.directory \"${{ github.workspace }}\" && extras/package/win32/build.sh -a x86_64 -r -p -m"
 
       - name: Verify installer artifact
         run: |
@@ -117,6 +118,9 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ needs.version.outputs.tag }}
+
+      - name: Prepare macOS build tools
+        run: brew install m4
 
       - name: Build and package BeePlayer
         env:
@@ -157,6 +161,9 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ needs.version.outputs.tag }}
+
+      - name: Prepare macOS build tools
+        run: brew install m4
 
       - name: Build and package BeePlayer
         env:
@@ -234,6 +241,8 @@ jobs:
 
               DESKTOP_FILE="$(find /tmp/appdir/usr/share/applications -maxdepth 1 -name "vlc.desktop" -print -quit)"
               test -n "${DESKTOP_FILE}"
+              sed -i "s|^Exec=.*|Exec=vlc --started-from-file %U|" "${DESKTOP_FILE}"
+              sed -i "s|^TryExec=.*|TryExec=vlc|" "${DESKTOP_FILE}"
               sed -i "s/^Icon=.*/Icon=beeplayer/" "${DESKTOP_FILE}"
               install -Dm644 share/vlc512x512.png \
                 /tmp/appdir/usr/share/icons/hicolor/512x512/apps/beeplayer.png
