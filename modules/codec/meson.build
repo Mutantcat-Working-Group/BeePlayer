@@ -283,6 +283,7 @@ libaribcaption_dep = dependency('libaribcaption', 'aribcaption', required: get_o
 vlc_modules += {
     'name' : 'aribcaption',
     'sources' : files('arib/libaribcaption.c'),
+    'link_language' : 'cpp',
     'dependencies' : [libaribcaption_dep],
     'enabled' : libaribcaption_dep.found()
 }
