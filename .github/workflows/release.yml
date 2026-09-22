@@ -52,7 +52,7 @@ jobs:
           case "$VERSION" in
             *-*)
               echo "Version '${VERSION}' must not contain a '-N' suffix (e.g. -1, -2)." >&2
-              echo "Use the next date instead, e.g. 1.0.20260922, 1.0.20260923." >&2
+              echo "Use the next date instead, e.g. 1.0.20260923, 1.0.20260924." >&2
               exit 1
               ;;
           esac
@@ -240,6 +240,10 @@ jobs:
               export ARCH=x86_64
               export QMAKE="$(command -v qmake6 || command -v qmake)"
               test -x "${QMAKE}"
+
+              # The installed vlc binary has no RPATH, so linuxdeploy's ldd
+              # pass must be able to resolve libraries inside the AppDir.
+              export LD_LIBRARY_PATH="/tmp/appdir/usr/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
               /linuxdeploy/linuxdeploy \
                 --appdir /tmp/appdir \

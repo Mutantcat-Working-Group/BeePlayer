@@ -1,5 +1,5 @@
 project('BeePlayer', ['c', 'cpp'],
-    version: '1.0.20260923',
+    version: '1.0.20260924',
     default_options: ['c_std=gnu17', 'cpp_std=c++17'],
     meson_version: '>=1.10.0')
 
@@ -29,6 +29,16 @@ vlc_version_major    = vlc_version_parts[0].to_int()
 vlc_version_minor    = vlc_version_parts[1].to_int()
 vlc_version_revision = vlc_version_parts[2].to_int()
 vlc_version_extra    = vlc_version_parts.get(3, '0').to_int()
+
+# Windows VERSIONINFO fields are limited to 16 bits. Keep the full date in
+# the displayed version, but split it into year and month/day for resources.
+if vlc_version_revision > 65535
+    vlc_version_resource_high = vlc_version_revision / 10000
+    vlc_version_resource_low = vlc_version_revision % 10000
+else
+    vlc_version_resource_high = vlc_version_revision
+    vlc_version_resource_low = vlc_version_extra
+endif
 
 # Short version (major.minor.revision)
 vlc_version_short = f'@vlc_version_major@.@vlc_version_minor@.@vlc_version_revision@'
@@ -985,6 +995,8 @@ cdata.set('VERSION_MAJOR',      vlc_version_major)
 cdata.set('VERSION_MINOR',      vlc_version_minor)
 cdata.set('VERSION_REVISION',   vlc_version_revision)
 cdata.set('VERSION_EXTRA',      vlc_version_extra)
+cdata.set('VERSION_RESOURCE_HIGH', vlc_version_resource_high)
+cdata.set('VERSION_RESOURCE_LOW', vlc_version_resource_low)
 
 cdata.set('PACKAGE_VERSION_MAJOR',      vlc_version_major)
 cdata.set('PACKAGE_VERSION_MINOR',      vlc_version_minor)
