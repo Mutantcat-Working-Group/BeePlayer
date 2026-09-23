@@ -528,7 +528,7 @@ if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
     find "../$CONTRIB_PREFIX/lib" -name 'libggml*.a' -delete 2>/dev/null || true
     find "../$CONTRIB_PREFIX/lib" -name 'libprojectM-4.a' -delete 2>/dev/null || true
     rm -rf "../$CONTRIB_PREFIX/lib/opencv4" 2>/dev/null || true
-    for pc in opencv opencv4 sam3 ggml libprojectM; do
+    for pc in opencv opencv4 sam3 ggml projectM libprojectM; do
         find "../$CONTRIB_PREFIX/lib/pkgconfig" -name "${pc}*.pc" -delete 2>/dev/null || true
     done
 fi
