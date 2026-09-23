@@ -406,8 +406,18 @@ if [ "$COMPILING_WITH_CLANG" -gt 0 ]; then
         VLC_CXXFLAGS="$VLC_CXXFLAGS --start-no-unused-arguments"
         VLC_LDFLAGS="$VLC_LDFLAGS --start-no-unused-arguments"
     fi
-    VLC_LDFLAGS="$VLC_LDFLAGS -Wl,-l:libunwind.a -Wl,-l:libpthread.a -static-libstdc++"
-    VLC_CXXFLAGS="$VLC_CXXFLAGS -Wl,-l:libunwind.a -static-libstdc++"
+    # Find the GCC static libstdc++ to force ABI-compatible linking with
+    # prebuilt contribs that were compiled against GCC 14 libstdc++.
+    GCC_LIBSTDCPP="$(find /usr/lib/gcc/x86_64-w64-mingw32 -name 'libstdc++.a' -path '*/posix/*' 2>/dev/null | head -1)"
+    if [ -z "$GCC_LIBSTDCPP" ]; then
+        GCC_LIBSTDCPP="$(find /usr/lib/gcc/x86_64-w64-mingw32 -name 'libstdc++.a' 2>/dev/null | head -1)"
+    fi
+    GCC_LIBSTDCPP_DIR="$(dirname "$GCC_LIBSTDCPP" 2>/dev/null || echo '')"
+    if [ -n "$GCC_LIBSTDCPP_DIR" ] && [ -d "$GCC_LIBSTDCPP_DIR" ]; then
+        VLC_LDFLAGS="$VLC_LDFLAGS -L${GCC_LIBSTDCPP_DIR}"
+    fi
+    VLC_LDFLAGS="$VLC_LDFLAGS -Wl,-l:libunwind.a -Wl,-l:libpthread.a -Wl,-Bstatic -lstdc++ -Wl,-Bdynamic"
+    VLC_CXXFLAGS="$VLC_CXXFLAGS -Wl,-l:libunwind.a -Wl,-Bstatic -lstdc++ -Wl,-Bdynamic"
     if [ "${COMPILING_WITH_CLANG14}" = "1" ]; then
         VLC_CXXFLAGS="$VLC_CXXFLAGS --end-no-unused-arguments"
         VLC_LDFLAGS="$VLC_LDFLAGS --end-no-unused-arguments"
@@ -503,16 +513,7 @@ fi
 if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
     find "../$CONTRIB_PREFIX/lib" -name "libstdc++.dll.a" -delete 2>/dev/null || true
 fi
-# OpenCV and sam3 contribs are built with GCC 14 (libstdc++) which ABI-
-# mismatches llvm-mingw libc++ at link time. Remove them entirely.
-if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
-    find "../$CONTRIB_PREFIX/lib" -name 'libopencv_*.a' -delete 2>/dev/null || true
-    find "../$CONTRIB_PREFIX/lib" -name 'libsam3*.a' -delete 2>/dev/null || true
-    find "../$CONTRIB_PREFIX/lib" -name 'libggml*.a' -delete 2>/dev/null || true
-    find "../$CONTRIB_PREFIX/lib/pkgconfig" -name 'opencv*.pc' -delete 2>/dev/null || true
-    find "../$CONTRIB_PREFIX/lib/pkgconfig" -name 'sam3.pc' -delete 2>/dev/null || true
-    rm -rf "../$CONTRIB_PREFIX/lib/opencv4" 2>/dev/null || true
-fi
+
 cd ../..
 
 # configuration matching configure.sh (goom is called goom2, theora is theoradec+theoraenc)
