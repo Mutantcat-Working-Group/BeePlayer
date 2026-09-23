@@ -499,6 +499,10 @@ if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
     find "../$CONTRIB_PREFIX/lib/pkgconfig" -type f -name '*.pc' \
         -exec sed -i -E 's/[[:space:]]-(lgcc|lgcc_s|lgcc_eh|latomic)//g' {} +
 fi
+# Also remove the libstdc++ DLL import library to force static linking
+if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
+    find "../$CONTRIB_PREFIX/lib" -name "libstdc++.dll.a" -delete 2>/dev/null || true
+fi
 cd ../..
 
 # configuration matching configure.sh (goom is called goom2, theora is theoradec+theoraenc)
