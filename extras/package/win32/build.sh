@@ -513,6 +513,27 @@ fi
 if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
     find "../$CONTRIB_PREFIX/lib" -name "libstdc++.dll.a" -delete 2>/dev/null || true
 fi
+# The prebuilt win64 contribs are built with GCC 14 (libstdc++ with
+# std::__cxx11 ABI). llvm-mingw's lld links libc++ by default (std::__1::
+# ABI) and cannot satisfy those symbols at link time. Remove every contrib
+# static library that references the GCC \::__cxx11\$ ABI so the link
+# does not pull in incompatible C++ symbols.
+if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
+    echo "[build] Scanning contribs for GCC ABI (std::__cxx11) symbols..."
+    find "../$CONTRIB_PREFIX/lib" -name '*.a' -print0 2>/dev/null | while IFS= read -r -d '' lib; do
+        if nm -P "${lib}" 2>/dev/null | grep -qE 'std::__cxx11|std::__throw_|std::_[a-zA-Z]+::~|vtable for std::__cxx11|VTT for std::__cxx11'; then
+            echo "[build] Removing GCC ABI contrib: ${lib}"
+            rm -f "${lib}"
+        fi
+    done
+    # Also remove the pkgconfig files for removed libraries.
+    find "../$CONTRIB_PREFIX/lib/pkgconfig" -name '*.pc' -print0 2>/dev/null | while IFS= read -r -d '' pc; do
+        libname="$(basename "${pc}" .pc)"
+        if [ ! -f "../$CONTRIB_PREFIX/lib/lib${libname}.a" ] &&            [ ! -f "../$CONTRIB_PREFIX/lib/${libname}.a" ]; then
+            rm -f "${pc}"
+        fi
+    done
+fi
 
 cd ../..
 
