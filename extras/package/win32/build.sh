@@ -503,6 +503,16 @@ fi
 if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
     find "../$CONTRIB_PREFIX/lib" -name "libstdc++.dll.a" -delete 2>/dev/null || true
 fi
+# OpenCV and sam3 contribs are built with GCC 14 (libstdc++) which ABI-
+# mismatches llvm-mingw libc++ at link time. Remove them entirely.
+if [ "$COMPILING_WITH_CLANG" -gt 0 ] && [ "$ARCH" = "x86_64" ]; then
+    find "../$CONTRIB_PREFIX/lib" -name 'libopencv_*.a' -delete 2>/dev/null || true
+    find "../$CONTRIB_PREFIX/lib" -name 'libsam3*.a' -delete 2>/dev/null || true
+    find "../$CONTRIB_PREFIX/lib" -name 'libggml*.a' -delete 2>/dev/null || true
+    find "../$CONTRIB_PREFIX/lib/pkgconfig" -name 'opencv*.pc' -delete 2>/dev/null || true
+    find "../$CONTRIB_PREFIX/lib/pkgconfig" -name 'sam3.pc' -delete 2>/dev/null || true
+    rm -rf "../$CONTRIB_PREFIX/lib/opencv4" 2>/dev/null || true
+fi
 cd ../..
 
 # configuration matching configure.sh (goom is called goom2, theora is theoradec+theoraenc)
