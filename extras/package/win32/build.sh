@@ -406,8 +406,8 @@ if [ "$COMPILING_WITH_CLANG" -gt 0 ]; then
         VLC_CXXFLAGS="$VLC_CXXFLAGS --start-no-unused-arguments"
         VLC_LDFLAGS="$VLC_LDFLAGS --start-no-unused-arguments"
     fi
-    VLC_LDFLAGS="$VLC_LDFLAGS -Wl,-l:libunwind.a -Wl,-l:libpthread.a -static-libstdc++"
-    VLC_CXXFLAGS="$VLC_CXXFLAGS -Wl,-l:libunwind.a"
+    VLC_LDFLAGS="$VLC_LDFLAGS -Wl,-l:libunwind.a -Wl,-l:libpthread.a -stdlib=libc++"
+    VLC_CXXFLAGS="$VLC_CXXFLAGS -Wl,-l:libunwind.a -stdlib=libc++"
     if [ "${COMPILING_WITH_CLANG14}" = "1" ]; then
         VLC_CXXFLAGS="$VLC_CXXFLAGS --end-no-unused-arguments"
         VLC_LDFLAGS="$VLC_LDFLAGS --end-no-unused-arguments"
