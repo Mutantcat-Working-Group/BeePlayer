@@ -1,6 +1,10 @@
 /*****************************************************************************
  * libvlc.c: libvlc instances creation and deletion, interfaces handling
  *****************************************************************************
+ *
+ * BeePlayer — 由异猫工作群（mutantcat.org）发行
+ * GitHub: https://github.com/Mutantcat-Working-Group
+ *
  * Copyright (C) 1998-2008 VLC authors and VideoLAN
  *
  * Authors: Vincent Seguin <seguin@via.ecp.fr>
