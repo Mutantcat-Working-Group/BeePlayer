@@ -12,6 +12,7 @@
 - 内置可嵌入第三方应用的引擎 **libVLC**，提供 C、C++、Python、C# 等语言绑定。
 - 支持 Windows、macOS、GNU/Linux、BSD、Android、iOS 等主流平台。
 - 全格式覆盖、稳定播放；同一引擎跨平台运行；所有源码可审阅、可修改。
+- **发行方** 由异猫工作群（mutantcat.org）发行，GitHub: https://github.com/Mutantcat-Working-Group
 
 核心价值：播放器能放的它都能放，引擎能嵌进你的程序里替你干活。
 
@@ -45,7 +46,7 @@
 
 ### 四、安装与下载
 
-1. 桌面与移动端使用：在 Windows、macOS、GNU/Linux、BSD、Android、iOS 等平台上安装对应发行包即可使用（VideoLAN 官方渠道提供各平台包）。
+1. 桌面与移动端使用：在 Windows、macOS、GNU/Linux、BSD、Android、iOS 等平台上安装对应发行包即可使用，各平台安装包见本仓库 [Releases](https://github.com/Mutantcat-Working-Group/BeePlayer/releases) 页面。
 2. 开发者集成：在自己应用中引入 libVLC（见第六章），即可获得播放、转码和串流能力，无需重写底层。
 3. 自行编译：按第七章准备工具链后从源码构建。
 

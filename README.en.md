@@ -12,6 +12,7 @@
 - Ships with the embeddable engine **libVLC**, providing bindings for C, C++, Python, C# and more.
 - Supports Windows, macOS, GNU/Linux, BSD, Android, iOS and other mainstream platforms.
 - Full format coverage with stable playback; one engine across platforms; all source code reviewable and modifiable.
+- **Publisher** Mutantcat Working Group (mutantcat.org) · GitHub: https://github.com/Mutantcat-Working-Group
 
 Core value: if the player can open it, BeePlayer opens it, and the engine can do the work inside your own application.
 
@@ -80,9 +81,3 @@ Core value: if the player can open it, BeePlayer opens it, and the engine can do
 
 - BeePlayer itself is licensed under GPLv2 (or later).
 - The libVLC engine is licensed under LGPLv2 (or later) and can be embedded in third-party applications.
-
----
-
-## Acknowledgments
-
-This repository is a fork of [videolan/vlc](https://github.com/videolan/vlc). Thanks to the VideoLAN team and all VLC contributors for their open-source work; this repository continues to build upon it.
