@@ -87,6 +87,7 @@ jobs:
            -v "${{ github.workspace }}:${{ github.workspace }}" \
            -e VLC_PREBUILT_CONTRIBS_URL="${PREBUILT_URL}" \
            -e VLC_MCONFIGFLAGS="${VLC_MCONFIGFLAGS}" \
+          -e SELF_SIGN_WIN_PAYLOAD=1 \
            registry.videolan.org/vlc-debian-llvm-msvcrt:20260611225331 \
            /bin/sh -c "git config --global --add safe.directory \"${{ github.workspace }}\" && extras/package/win32/build.sh -a x86_64 -r -p -m"
 
@@ -101,6 +102,46 @@ jobs:
           fi
           cp "${INSTALLER}" "BeePlayer-${VERSION}-win64.exe"
           ls -lh "BeePlayer-${VERSION}-win64.exe"
+
+      # The payload was signed inside the build container; the installer needs
+      # its own seal before upload.
+      - name: Install osslsigncode
+        run: |
+          set -euxo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq osslsigncode
+
+      - name: Create Windows code-signing certificate
+        run: |
+          set -euxo pipefail
+          openssl req -x509 -newkey rsa:2048 -sha256 -days 3650 -nodes \
+            -subj "/CN=Mutantcat Working Group/O=Mutantcat Working Group/C=CN" \
+            -addext "extendedKeyUsage=codeSigning" \
+            -addext "keyUsage=digitalSignature" \
+            -keyout "${RUNNER_TEMP}/mutantcat.key" \
+            -out "${RUNNER_TEMP}/mutantcat.crt"
+
+      - name: Self-sign installer
+        run: |
+          set -euxo pipefail
+          osslsigncode sign \
+            -certs "${RUNNER_TEMP}/mutantcat.crt" \
+            -key "${RUNNER_TEMP}/mutantcat.key" \
+            -h sha256 \
+            -n "BeePlayer ${VERSION}" \
+            -i "https://github.com/Mutantcat-Working-Group/BeePlayer" \
+            -in "BeePlayer-${VERSION}-win64.exe" \
+            -out "BeePlayer-${VERSION}-win64.exe.signed"
+          mv -f "BeePlayer-${VERSION}-win64.exe.signed" "BeePlayer-${VERSION}-win64.exe"
+          echo "installer self-signed: BeePlayer-${VERSION}-win64.exe"
+
+      # A self-signed certificate has no trusted chain, so check the signer
+      # subject instead of the overall signature status.
+      - name: Verify self-signed installer
+        run: |
+          set -euxo pipefail
+          osslsigncode verify "BeePlayer-${VERSION}-win64.exe" 2>&1 | tee "${RUNNER_TEMP}/verify.log" || true
+          grep -i "Mutantcat Working Group" "${RUNNER_TEMP}/verify.log"
 
       - uses: actions/upload-artifact@v4
         with:
@@ -155,6 +196,20 @@ jobs:
           hdiutil verify "BeePlayer-${VERSION}-macos-x86_64.dmg"
           ls -lh "BeePlayer-${VERSION}-macos-x86_64.dmg"
 
+      # Users receive whatever macOS mounts from the image, so the
+      # /Applications link and the ad-hoc seal have to survive the DMG.
+      - name: Verify DMG contents
+        run: |
+          set -euo pipefail
+          DMG="BeePlayer-${VERSION}-macos-x86_64.dmg"
+          MOUNT="$(mktemp -d)"
+          hdiutil attach -nobrowse -readonly -mountpoint "${MOUNT}" "${DMG}"
+          trap 'hdiutil detach "${MOUNT}" || true' EXIT
+          test -L "${MOUNT}/Applications"
+          test -d "${MOUNT}/BeePlayer.app"
+          codesign -dv "${MOUNT}/BeePlayer.app" 2>&1 | grep -q 'Signature=adhoc'
+          echo "mounted app is ad-hoc signed and offers /Applications"
+
       - uses: actions/upload-artifact@v4
         with:
           name: BeePlayer-${{ env.VERSION }}-macos-x86_64.dmg
@@ -207,6 +262,20 @@ jobs:
           cp "BeePlayer-${VERSION}.dmg" "BeePlayer-${VERSION}-macos-arm64.dmg"
           hdiutil verify "BeePlayer-${VERSION}-macos-arm64.dmg"
           ls -lh "BeePlayer-${VERSION}-macos-arm64.dmg"
+
+      # Users receive whatever macOS mounts from the image, so the
+      # /Applications link and the ad-hoc seal have to survive the DMG.
+      - name: Verify DMG contents
+        run: |
+          set -euo pipefail
+          DMG="BeePlayer-${VERSION}-macos-arm64.dmg"
+          MOUNT="$(mktemp -d)"
+          hdiutil attach -nobrowse -readonly -mountpoint "${MOUNT}" "${DMG}"
+          trap 'hdiutil detach "${MOUNT}" || true' EXIT
+          test -L "${MOUNT}/Applications"
+          test -d "${MOUNT}/BeePlayer.app"
+          codesign -dv "${MOUNT}/BeePlayer.app" 2>&1 | grep -q 'Signature=adhoc'
+          echo "mounted app is ad-hoc signed and offers /Applications"
 
       - uses: actions/upload-artifact@v4
         with:

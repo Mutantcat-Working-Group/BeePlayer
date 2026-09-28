@@ -56,7 +56,7 @@ SetCompressor /SOLID lzma
 
 SetOverwrite ifdiff
 CRCCheck on
-BrandingText "${PRODUCT_GROUP} ${PRODUCT_NAME}"
+BrandingText "${PRODUCT_GROUP} ${PRODUCT_NAME} ${PRODUCT_VERSION}"
 
 InstType "$(Name_InstTypeRecommended)"
 InstType "$(Name_InstTypeMinimum)"
@@ -128,6 +128,11 @@ RequestExecutionLevel admin
   !define VLC_LANGFILE_FALLBACK "EnglishExtra.nsh"
 
 ; Language files (first language is default)
+; SimpChinese leads so the installer UI opens in Chinese; the language
+; chooser page is intentionally skipped to keep the whole flow in Chinese.
+  !insertmacro MUI_LANGUAGE "SimpChinese"
+  !insertmacro LANGFILE_INCLUDE_WITHDEFAULT "SimpChineseExtra.nsh" ${VLC_LANGFILE_FALLBACK}
+
   !insertmacro MUI_LANGUAGE "English"
   !insertmacro LANGFILE_INCLUDE "EnglishExtra.nsh"
 
@@ -137,8 +142,6 @@ RequestExecutionLevel admin
   !insertmacro LANGFILE_INCLUDE_WITHDEFAULT "GermanExtra.nsh" ${VLC_LANGFILE_FALLBACK}
   !insertmacro MUI_LANGUAGE "Spanish"
   !insertmacro LANGFILE_INCLUDE_WITHDEFAULT "SpanishExtra.nsh" ${VLC_LANGFILE_FALLBACK}
-  !insertmacro MUI_LANGUAGE "SimpChinese"
-  !insertmacro LANGFILE_INCLUDE_WITHDEFAULT "SimpChineseExtra.nsh" ${VLC_LANGFILE_FALLBACK}
   !insertmacro MUI_LANGUAGE "TradChinese"
   !insertmacro LANGFILE_INCLUDE_WITHDEFAULT "TradChineseExtra.nsh" ${VLC_LANGFILE_FALLBACK}
   !insertmacro MUI_LANGUAGE "Japanese"
@@ -608,7 +611,8 @@ WinOk:
     ${EndIf}
   ${EndIf}
 
-  !insertmacro MUI_LANGDLL_DISPLAY
+  ; A single UI language (SimpChinese) is shipped, so the chooser page is
+  ; skipped and every page renders in Chinese.
 
 FunctionEnd
 

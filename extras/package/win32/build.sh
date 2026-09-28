@@ -10,6 +10,48 @@ info()
     echo "[${green}build${normal}] $1"
 }
 
+# Self-sign the Windows payload (app binary and DLLs) before makensis packs
+# it, so the installer embeds signed binaries. Gated by SELF_SIGN_WIN_PAYLOAD;
+# without that variable the build behaves exactly as before.
+self_sign_win_payload()
+{
+    if [ -z "$SELF_SIGN_WIN_PAYLOAD" ]; then
+        return 0
+    fi
+
+    if ! command -v osslsigncode >/dev/null 2>&1; then
+        info "Installing osslsigncode"
+        apt-get update -qq
+        DEBIAN_FRONTEND=noninteractive apt-get install -y -qq osslsigncode
+    fi
+    if ! command -v osslsigncode >/dev/null 2>&1; then
+        echo "osslsigncode is required to sign the payload" >&2
+        exit 1
+    fi
+
+    SIGN_DIR="$(mktemp -d)"
+    openssl req -x509 -newkey rsa:2048 -sha256 -days 3650 -nodes \
+        -subj "/CN=Mutantcat Working Group/O=Mutantcat Working Group/C=CN" \
+        -addext "extendedKeyUsage=codeSigning" \
+        -addext "keyUsage=digitalSignature" \
+        -keyout "${SIGN_DIR}/mutantcat.key" -out "${SIGN_DIR}/mutantcat.crt"
+
+    info "Self-signing payload in ${MDESTDIR}"
+    find "$MDESTDIR" -type f \( -iname '*.exe' -o -iname '*.dll' \) > "${SIGN_DIR}/files.txt"
+    while IFS= read -r f; do
+        osslsigncode sign \
+            -certs "${SIGN_DIR}/mutantcat.crt" \
+            -key "${SIGN_DIR}/mutantcat.key" \
+            -h sha256 \
+            -n "BeePlayer" \
+            -i "https://github.com/Mutantcat-Working-Group/BeePlayer" \
+            -in "$f" -out "${f}.signed"
+        mv -f "${f}.signed" "$f"
+    done < "${SIGN_DIR}/files.txt"
+    rm -rf "${SIGN_DIR}"
+    info "Payload self-signed"
+}
+
 usage()
 {
 cat << EOF
@@ -690,6 +732,7 @@ if [ -n "$BUILD_MESON" ]; then
 
     if [ "$INSTALLER" = "n" ]; then
         meson install -C ${BUILD_PATH}/$SHORTARCH-meson ${MINSTALLFLAGS}
+        self_sign_win_payload
         makensis $MDESTDIR/spad.nsi
         makensis $MDESTDIR/vlc.win32.nsi
 
@@ -700,10 +743,12 @@ if [ -n "$BUILD_MESON" ]; then
     elif [ "$INSTALLER" = "r" ]; then
         meson dist -C ${BUILD_PATH}/$SHORTARCH-meson -j$JOBS --no-tests
         meson install -C ${BUILD_PATH}/$SHORTARCH-meson ${MINSTALLFLAGS}
+        self_sign_win_payload
         makensis $MDESTDIR/spad.nsi
         makensis $MDESTDIR/vlc.win32.nsi
     elif [ "$INSTALLER" = "u" ]; then
         meson install -C ${BUILD_PATH}/$SHORTARCH-meson ${MINSTALLFLAGS}
+        self_sign_win_payload
         makensis $MDESTDIR/spad.nsi
         makensis $MDESTDIR/vlc.win32.nsi
     fi
