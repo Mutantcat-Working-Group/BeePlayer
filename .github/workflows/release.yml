@@ -60,9 +60,17 @@ jobs:
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
 
   windows:
-    name: Windows NSIS (x86_64)
+    name: Windows NSIS (${{ matrix.arch }})
     needs: version
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-latest
+          - arch: aarch64
+            runner: windows-11-arm
     timeout-minutes: 360
     env:
       VERSION: ${{ needs.version.outputs.version }}
@@ -79,29 +87,38 @@ jobs:
       - name: Build and package BeePlayer
         run: |
           set -euxo pipefail
-          CONTRIB_SHA="${{ env.VLC_CONTRIB_SHA_WIN64 }}"
-          PREBUILT_URL="https://artifacts.videolan.org/vlc/win64/vlc-contrib-x86_64-w64-mingw32-${CONTRIB_SHA}.tar.zst"
-          docker run --rm \
-           --user 0 \
-           --workdir "${{ github.workspace }}" \
-           -v "${{ github.workspace }}:${{ github.workspace }}" \
-           -e VLC_PREBUILT_CONTRIBS_URL="${PREBUILT_URL}" \
-           -e VLC_MCONFIGFLAGS="${VLC_MCONFIGFLAGS}" \
-          -e SELF_SIGN_WIN_PAYLOAD=1 \
-           registry.videolan.org/vlc-debian-llvm-msvcrt:20260611225331 \
-           /bin/sh -c "git config --global --add safe.directory \"${{ github.workspace }}\" && extras/package/win32/build.sh -a x86_64 -r -p -m"
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            CONTRIB_SHA="${VLC_CONTRIB_SHA_WIN64}"
+            PREBUILT_URL="https://artifacts.videolan.org/vlc/win64/vlc-contrib-x86_64-w64-mingw32-${CONTRIB_SHA}.tar.zst"
+            docker run --rm \
+             --user 0 \
+             --workdir "${{ github.workspace }}" \
+             -v "${{ github.workspace }}:${{ github.workspace }}" \
+             -e VLC_PREBUILT_CONTRIBS_URL="${PREBUILT_URL}" \
+             -e VLC_MCONFIGFLAGS="${VLC_MCONFIGFLAGS}" \
+            -e SELF_SIGN_WIN_PAYLOAD=1 \
+             registry.videolan.org/vlc-debian-llvm-msvcrt:20260611225331 \
+             /bin/sh -c "git config --global --add safe.directory \"${{ github.workspace }}\" && extras/package/win32/build.sh -a x86_64 -r -p -m"
+          else
+            extras/package/win32/build.sh -a aarch64 -r -p -m
+          fi
 
       - name: Verify installer artifact
         run: |
           set -euxo pipefail
-          INSTALLER="$(find . -maxdepth 3 -name 'BeePlayer-*-win64.exe' -print -quit)"
+          INSTALLER="$(find . -maxdepth 3 -name 'BeePlayer-*-win64.exe' -o -name 'BeePlayer-*-arm64.exe' -print -quit)"
           if [ -z "${INSTALLER}" ]; then
             echo "NSIS installer was not produced" >&2
             find . -maxdepth 4 -name '*.exe' -print
             exit 1
           fi
-          cp "${INSTALLER}" "BeePlayer-${VERSION}-win64.exe"
-          ls -lh "BeePlayer-${VERSION}-win64.exe"
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            cp "${INSTALLER}" "BeePlayer-${VERSION}-win64.exe"
+            ls -lh "BeePlayer-${VERSION}-win64.exe"
+          else
+            cp "${INSTALLER}" "BeePlayer-${VERSION}-arm64.exe"
+            ls -lh "BeePlayer-${VERSION}-arm64.exe"
+          fi
 
       # The payload was signed inside the build container; the installer needs
       # its own seal before upload.
@@ -124,29 +141,39 @@ jobs:
       - name: Self-sign installer
         run: |
           set -euxo pipefail
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            INSTALLER="BeePlayer-${VERSION}-win64.exe"
+          else
+            INSTALLER="BeePlayer-${VERSION}-arm64.exe"
+          fi
           osslsigncode sign \
             -certs "${RUNNER_TEMP}/mutantcat.crt" \
             -key "${RUNNER_TEMP}/mutantcat.key" \
             -h sha256 \
             -n "BeePlayer ${VERSION}" \
             -i "https://github.com/Mutantcat-Working-Group/BeePlayer" \
-            -in "BeePlayer-${VERSION}-win64.exe" \
-            -out "BeePlayer-${VERSION}-win64.exe.signed"
-          mv -f "BeePlayer-${VERSION}-win64.exe.signed" "BeePlayer-${VERSION}-win64.exe"
-          echo "installer self-signed: BeePlayer-${VERSION}-win64.exe"
+            -in "${INSTALLER}" \
+            -out "${INSTALLER}.signed"
+          mv -f "${INSTALLER}.signed" "${INSTALLER}"
+          echo "installer self-signed: ${INSTALLER}"
 
       # A self-signed certificate has no trusted chain, so check the signer
       # subject instead of the overall signature status.
       - name: Verify self-signed installer
         run: |
           set -euxo pipefail
-          osslsigncode verify "BeePlayer-${VERSION}-win64.exe" 2>&1 | tee "${RUNNER_TEMP}/verify.log" || true
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            INSTALLER="BeePlayer-${VERSION}-win64.exe"
+          else
+            INSTALLER="BeePlayer-${VERSION}-arm64.exe"
+          fi
+          osslsigncode verify "${INSTALLER}" 2>&1 | tee "${RUNNER_TEMP}/verify.log" || true
           grep -i "Mutantcat Working Group" "${RUNNER_TEMP}/verify.log"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: BeePlayer-${{ env.VERSION }}-win64.exe
-          path: BeePlayer-${{ env.VERSION }}-win64.exe
+          name: BeePlayer-${{ env.VERSION }}-win-${{ matrix.arch }}.exe
+          path: BeePlayer-${{ env.VERSION }}-win-${{ matrix.arch }}.exe
           if-no-files-found: error
 
   macos-intel:
@@ -374,9 +401,100 @@ jobs:
           path: BeePlayer-${{ env.VERSION }}-linux-x86_64.AppImage
           if-no-files-found: error
 
+  linux-appimage-arm64:
+    name: Linux AppImage (arm64)
+    needs: version
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 600
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ needs.version.outputs.tag }}
+
+      - name: Download linuxdeploy tools
+        run: |
+          set -euxo pipefail
+          mkdir -p "${RUNNER_TEMP}/linuxdeploy"
+          curl -fsSL -o "${RUNNER_TEMP}/linuxdeploy/linuxdeploy" \
+            https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-aarch64.AppImage
+          curl -fsSL -o "${RUNNER_TEMP}/linuxdeploy/linuxdeploy-plugin-qt" \
+            https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-aarch64.AppImage
+          chmod +x "${RUNNER_TEMP}/linuxdeploy"/*
+
+      - name: Build, install and package BeePlayer AppImage
+        run: |
+          set -euxo pipefail
+          mkdir -p /tmp/appdir
+          docker run --rm \
+            --user 0 \
+            --workdir "${{ github.workspace }}" \
+            -v "${{ github.workspace }}:${{ github.workspace }}" \
+            -v /tmp/appdir:/tmp/appdir \
+            -v "${RUNNER_TEMP}/linuxdeploy:/linuxdeploy:ro" \
+            registry.videolan.org/vlc-debian-unstable:20260611225331 \
+            /bin/sh -euxc '
+              export NCPU="$(getconf _NPROCESSORS_ONLN)"
+
+              # linuxdeploy needs these tools on the build host.
+              apt-get update -qq
+              apt-get install -y --no-install-recommends patchelf desktop-file-utils
+
+              # Official VLC debian CI also builds directly against the
+              # system libraries provided by this image.
+              git config --global --add safe.directory "${{ github.workspace }}"
+              ./bootstrap
+              ./configure --prefix=/usr
+              make -j"${NCPU}"
+
+              find /tmp/appdir -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+              make install DESTDIR=/tmp/appdir
+
+              DESKTOP_FILE="$(find /tmp/appdir/usr/share/applications -maxdepth 1 -name "vlc.desktop" -print -quit)"
+              test -n "${DESKTOP_FILE}"
+              sed -i "s|^Exec=.*|Exec=vlc --started-from-file %U|" "${DESKTOP_FILE}"
+              sed -i "s|^TryExec=.*|TryExec=vlc|" "${DESKTOP_FILE}"
+              sed -i "s/^Icon=.*/Icon=beeplayer/" "${DESKTOP_FILE}"
+              install -Dm644 share/vlc512x512.png \
+                /tmp/appdir/usr/share/icons/hicolor/512x512/apps/beeplayer.png
+
+              export APPIMAGE_EXTRACT_AND_RUN=1
+              export ARCH=aarch64
+              export QMAKE="$(command -v qmake6 || command -v qmake)"
+              test -x "${QMAKE}"
+
+              # The installed vlc binary has no RPATH, so the linuxdeploy
+              # ldd pass must resolve libraries inside the AppDir.
+              export LD_LIBRARY_PATH="/tmp/appdir/usr/lib:/tmp/appdir/usr/lib/beeplayer${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+              /linuxdeploy/linuxdeploy \
+                --appdir /tmp/appdir \
+                --desktop-file "${DESKTOP_FILE}" \
+                --icon-file /tmp/appdir/usr/share/icons/hicolor/512x512/apps/beeplayer.png \
+                --plugin qt \
+                --output appimage
+            '
+
+      - name: Rename and verify AppImage
+        run: |
+          set -euxo pipefail
+          APPIMAGE_FILE="$(find . -maxdepth 1 -name '*.AppImage' -print -quit)"
+          test -n "${APPIMAGE_FILE}"
+          cp "${APPIMAGE_FILE}" "BeePlayer-${VERSION}-linux-arm64.AppImage"
+          chmod +x "BeePlayer-${VERSION}-linux-arm64.AppImage"
+          ls -lh "BeePlayer-${VERSION}-linux-arm64.AppImage"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BeePlayer-${{ env.VERSION }}-linux-arm64.AppImage
+          path: BeePlayer-${{ env.VERSION }}-linux-arm64.AppImage
+          if-no-files-found: error
+
   release:
     name: Publish Release
-    needs: [version, windows, macos-intel, macos-arm64, linux-appimage]
+    needs: [version, windows, macos-intel, macos-arm64, linux-appimage, linux-appimage-arm64]
     runs-on: ubuntu-latest
     env:
       VERSION: ${{ needs.version.outputs.version }}
@@ -405,10 +523,12 @@ jobs:
           body: |
             BeePlayer ${{ env.VERSION }} release.
 
-            - Windows: NSIS installer (`BeePlayer-${{ env.VERSION }}-win64.exe`)
+            - Windows x64: NSIS installer (`BeePlayer-${{ env.VERSION }}-win64.exe`)
+            - Windows arm64: NSIS installer (`BeePlayer-${{ env.VERSION }}-arm64.exe`)
             - macOS Intel: ad-hoc signed DMG (`BeePlayer-${{ env.VERSION }}-macos-x86_64.dmg`)
             - macOS Apple Silicon: ad-hoc signed DMG (`BeePlayer-${{ env.VERSION }}-macos-arm64.dmg`)
-            - Linux: AppImage (`BeePlayer-${{ env.VERSION }}-linux-x86_64.AppImage`)
+            - Linux x64: AppImage (`BeePlayer-${{ env.VERSION }}-linux-x86_64.AppImage`)
+            - Linux arm64: AppImage (`BeePlayer-${{ env.VERSION }}-linux-arm64.AppImage`)
 
             The macOS packages are ad-hoc signed; without a Developer ID
             certificate Gatekeeper may require right-click -> Open on first run.
